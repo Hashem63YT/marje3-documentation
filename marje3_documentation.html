@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>مرجع (Marje3) - Project Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #4a7c59;
+            --accent-color: #6b9e78;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --header-bg: #fff;
+            --border-color: #e0e0e0;
+            --hover-color: #1e3a21;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body[dir="ltr"] {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            padding-top: max(1rem, env(safe-area-inset-top));
+            padding-left: max(2rem, env(safe-area-inset-left));
+            padding-right: max(2rem, env(safe-area-inset-right));
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            min-width: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link:active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .lang-switch {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            font-size: 1rem;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .lang-switch:hover,
+        .lang-switch:active {
+            background: var(--hover-color);
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            padding-left: max(2rem, env(safe-area-inset-left));
+            padding-right: max(2rem, env(safe-area-inset-right));
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            scroll-margin-top: 100px;
+        }
+
+        .section.hidden {
+            display: none;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        body[dir="ltr"] h2 {
+            border-left: none;
+            border-right: 4px solid var(--accent-color);
+            padding-left: 0;
+            padding-right: 1rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-right: 2rem;
+        }
+
+        body[dir="ltr"] ul,
+        body[dir="ltr"] ol {
+            padding-right: 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            font-size: 0.9em;
+        }
+
+        .subdomain-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        body[dir="ltr"] .subdomain-card {
+            border-right: none;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        body[dir="ltr"] .feature-list li {
+            border-right: none;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 480px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-item {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .summary-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .summary-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            padding-bottom: max(2rem, env(safe-area-inset-bottom));
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 1rem;
+            }
+
+            .lang-switch {
+                width: 100%;
+                padding: 0.75rem 1rem;
+            }
+
+            main {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+                margin: 1.5rem 0;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                line-height: 1.3;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+                padding-left: 0.75rem;
+            }
+
+            body[dir="ltr"] h2 {
+                padding-right: 0.75rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+                line-height: 1.3;
+            }
+
+            h4 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
+            p, li {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            ul, ol {
+                padding-right: 1.5rem;
+            }
+
+            body[dir="ltr"] ul,
+            body[dir="ltr"] ol {
+                padding-left: 1.5rem;
+            }
+
+            .subdomain-card {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .summary-item {
+                padding: 1.25rem;
+            }
+
+            .summary-item strong {
+                font-size: 1rem;
+            }
+
+            code {
+                font-size: 0.85em;
+                padding: 0.15rem 0.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3 {
+                font-size: 1.15rem;
+            }
+
+            .section {
+                padding: 1rem 0.75rem;
+            }
+
+            main {
+                padding: 0 0.75rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        * {
+            max-width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Highlight for active section */
+        .section:target {
+            animation: highlight 2s ease;
+        }
+
+        @keyframes highlight {
+            0% { background-color: rgba(107, 158, 120, 0.1); }
+            100% { background-color: white; }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <header>
+        <div class="header-container">
+            <div class="logo">مرجع (Marje3)</div>
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-link" data-lang-ar="نظرة عامة" data-lang-en="Overview">نظرة عامة</a>
+                <a href="#features" class="nav-link" data-lang-ar="الميزات" data-lang-en="Features">الميزات</a>
+                <a href="#technical" class="nav-link" data-lang-ar="البنية التقنية" data-lang-en="Technical">البنية التقنية</a>
+                <a href="#subdomains" class="nav-link" data-lang-ar="السب دومينز" data-lang-en="Subdomains">السب دومينز</a>
+                <a href="#summary" class="nav-link" data-lang-ar="الخلاصة" data-lang-en="Summary">الخلاصة</a>
+                <button class="lang-switch" onclick="toggleLanguage()">English</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <h1 data-lang-ar="مشروع مرجع" data-lang-en="Marje3 Project">مشروع مرجع</h1>
+            
+            <h3 data-lang-ar="الفكرة الأساسية" data-lang-en="Core Concept">الفكرة الأساسية</h3>
+            <p data-lang-ar="منصة شاملة وموثوقة لأهل السنة والجماعة، تجمع بين المحتوى العلمي والديني الذي تتم مراجعته من قِبَل علماء ومشايخ أهل السنة والجماعة في العالم الإسلامي." data-lang-en="A comprehensive and trusted platform for Ahl al-Sunnah wa al-Jama'ah (People of the Sunnah and the Community), bringing together scientific and religious content reviewed by scholars and sheikhs of Ahl al-Sunnah wa al-Jama'ah worldwide.">منصة شاملة وموثوقة لأهل السنة والجماعة، تجمع بين المحتوى العلمي والديني الذي تتم مراجعته من قِبَل علماء ومشايخ أهل السنة والجماعة في العالم الإسلامي.</p>
+
+            <h3 data-lang-ar="التفاصيل العامة" data-lang-en="General Details">التفاصيل العامة</h3>
+            
+            <h4 data-lang-ar="تسجيل الدخول والتحقق" data-lang-en="Authentication and Verification">تسجيل الدخول والتحقق</h4>
+            <ul>
+                <li data-lang-ar="تسجيل الدخول بحساب Google فقط (لا كلمات سر)" data-lang-en="Sign in with Google account only (no passwords)">تسجيل الدخول بحساب Google فقط (لا كلمات سر)</li>
+                <li data-lang-ar="OTP للتحقق: مرة واحدة لكل جهاز عند أول تسجيل - إعادة تحقق فقط عند: تسجيل دخول من جهاز جديد، عملية حساسة (تغيير إعدادات أمان)" data-lang-en="OTP Verification: Once per device on first registration - Re-verification only when: Signing in from a new device, Sensitive operation (changing security settings)">OTP للتحقق: مرة واحدة لكل جهاز عند أول تسجيل - إعادة تحقق فقط عند: تسجيل دخول من جهاز جديد، عملية حساسة (تغيير إعدادات أمان)</li>
+                <li data-lang-ar="طريقة لتجنب الحسابات الوهمية" data-lang-en="Method to avoid fake accounts">طريقة لتجنب الحسابات الوهمية</li>
+                <li data-lang-ar="استعادة الحساب: في حالة فقدان الحساب، يمكن للمستخدم إنشاء حساب جديد أو التواصل مع Google مباشرة (نحن لسنا مسؤولين عن حسابات Google)" data-lang-en="Account Recovery: In case of account loss, users can create a new account or contact Google directly (we are not administrators of Google accounts)">استعادة الحساب: في حالة فقدان الحساب، يمكن للمستخدم إنشاء حساب جديد أو التواصل مع Google مباشرة (نحن لسنا مسؤولين عن حسابات Google)</li>
+                <li data-lang-ar="إدارة الجلسات: مدة الجلسة 30 يوم، Inactivity timeout 24 ساعة، Cookies: httpOnly و secure، Token rotation مفعّل، منع session fixation" data-lang-en="Session Management: Session duration 30 days, Inactivity timeout 24 hours, Cookies: httpOnly and secure, Token rotation enabled, Session fixation prevention">إدارة الجلسات: مدة الجلسة 30 يوم، Inactivity timeout 24 ساعة، Cookies: httpOnly و secure، Token rotation مفعّل، منع session fixation</li>
+                <li data-lang-ar="حد الجلسات المتزامنة: تحديد حد أقصى للجلسات المتزامنة لكل مستخدم" data-lang-en="Concurrent Session Limit: Maximum limit for concurrent sessions per user">حد الجلسات المتزامنة: تحديد حد أقصى للجلسات المتزامنة لكل مستخدم</li>
+            </ul>
+
+            <h4 data-lang-ar="البحث والذكاء الاصطناعي" data-lang-en="Search and Artificial Intelligence">البحث والذكاء الاصطناعي</h4>
+            <ul>
+                <li data-lang-ar="البحث بالذكاء الاصطناعي لتجنب تكرار الأسئلة" data-lang-en="AI-powered search to avoid duplicate questions">البحث بالذكاء الاصطناعي لتجنب تكرار الأسئلة</li>
+                <li data-lang-ar="نظام ذكي للإجابة على الأسئلة الشائعة" data-lang-en="Intelligent system for answering common questions">نظام ذكي للإجابة على الأسئلة الشائعة</li>
+                <li data-lang-ar="توصيات محتوى ديناميكية للمستخدم حسب نشاطه السابق" data-lang-en="Dynamic content recommendations for users based on their previous activity">توصيات محتوى ديناميكية للمستخدم حسب نشاطه السابق</li>
+                <li data-lang-ar="Search Index Governance (إدارة فهارس البحث): تحديث فهارس البحث بشكل مجدول، إعادة بناء الفهارس تلقائيًا عند حدوث تغييرات كبيرة في المحتوى، ضمان دقة وحداثة نتائج البحث، Rate-limited Search Index & Content Rebuild لتجنب إساءة الاستخدام" data-lang-en="Search Index Governance: Scheduled search index updates, automatic index rebuilding when major content changes occur, ensure accuracy and freshness of search results, Rate-limited Search Index & Content Rebuild to prevent abuse">Search Index Governance (إدارة فهارس البحث): تحديث فهارس البحث بشكل مجدول، إعادة بناء الفهارس تلقائيًا عند حدوث تغييرات كبيرة في المحتوى، ضمان دقة وحداثة نتائج البحث، Rate-limited Search Index & Content Rebuild لتجنب إساءة الاستخدام</li>
+            </ul>
+
+            <h4 data-lang-ar="الدعم الفني" data-lang-en="Technical Support">الدعم الفني</h4>
+            <ul>
+                <li data-lang-ar="المحادثة المباشرة للدعم الفني" data-lang-en="Direct chat for technical support">المحادثة المباشرة للدعم الفني</li>
+            </ul>
+
+            <h4 data-lang-ar="الإشعارات" data-lang-en="Notifications">الإشعارات</h4>
+            <ul>
+                <li data-lang-ar="نظام إشعارات كامل يدعم نصوص، صور، وروابط" data-lang-en="Full notification system supporting text, images, and links">نظام إشعارات كامل يدعم نصوص، صور، وروابط</li>
+                <li data-lang-ar="إمكانية إرسال إشعارات يدوية عبر admin.marje3.app (عنوان + نص + صورة + الأولوية)" data-lang-en="Ability to send manual notifications via admin.marje3.app (title + text + image + priority)">إمكانية إرسال إشعارات يدوية عبر <code>admin.marje3.app</code> (عنوان + نص + صورة + الأولوية)</li>
+                <li data-lang-ar="تخصيص لون الإشعار وشكله" data-lang-en="Customizable notification colors and appearance">تخصيص لون الإشعار وشكله</li>
+                <li data-lang-ar="إشعارات مؤقتة يمكن حذفها تلقائيًا بعد فترة محددة" data-lang-en="Temporary notifications that can be automatically deleted after a specified period">إشعارات مؤقتة يمكن حذفها تلقائيًا بعد فترة محددة</li>
+                <li data-lang-ar="تحديد مستويات الأولوية لكل إشعار (Top, Medium, Low، ويمكن إضافة مستويات أعلى)" data-lang-en="Priority levels for each notification (Top, Medium, Low, and possibly higher levels)">تحديد مستويات الأولوية لكل إشعار (Top, Medium, Low، ويمكن إضافة مستويات أعلى)</li>
+                <li data-lang-ar="إشعارات الطوارئ تظهر لجميع المستخدمين فورًا (مثل الزلازل وتعليمات السلامة)" data-lang-en="Emergency notifications appear to all users immediately (e.g., earthquakes and safety instructions)">إشعارات الطوارئ تظهر لجميع المستخدمين فورًا (مثل الزلازل وتعليمات السلامة)</li>
+                <li data-lang-ar="إشعارات مرتبطة بالأنشطة اليومية والموسمية لكل مستخدم" data-lang-en="Activity-linked notifications for daily and seasonal activities for each user">إشعارات مرتبطة بالأنشطة اليومية والموسمية لكل مستخدم</li>
+                <li data-lang-ar="التحقق من الروابط: التحقق من صحة الروابط في الإشعارات لمنع التصيد الاحتيالي" data-lang-en="Link Validation: Validate links in notifications to prevent phishing">التحقق من الروابط: التحقق من صحة الروابط في الإشعارات لمنع التصيد الاحتيالي</li>
+                <li data-lang-ar="تمييز الروابط الخارجية: تمييز واضح للروابط الخارجية في الإشعارات" data-lang-en="External Link Marking: Clear marking of external links in notifications">تمييز الروابط الخارجية: تمييز واضح للروابط الخارجية في الإشعارات</li>
+            </ul>
+
+            <h4 data-lang-ar="أمان رفع الملفات (File Upload Security)" data-lang-en="File Upload Security">أمان رفع الملفات (File Upload Security)</h4>
+            <ul>
+                <li data-lang-ar="تحقق نوع الملف: Whitelist لأنواع الملفات المسموح بها" data-lang-en="File Type Validation: Whitelist of allowed file types">تحقق نوع الملف: Whitelist لأنواع الملفات المسموح بها</li>
+                <li data-lang-ar="حد أقصى للحجم: تحديد حد أقصى لحجم الملفات القابلة للرفع" data-lang-en="Size Limits: Maximum limit for file size">حد أقصى للحجم: تحديد حد أقصى لحجم الملفات القابلة للرفع</li>
+                <li data-lang-ar="فحص تلقائي: فحص تلقائي ضد الملفات الضارة (Virus Scanning)" data-lang-en="Automatic Scanning: Automatic scanning against malicious files (Virus Scanning)">فحص تلقائي: فحص تلقائي ضد الملفات الضارة (Virus Scanning)</li>
+                <li data-lang-ar="التخزين الآمن: التخزين في مساحة معزولة وآمنة" data-lang-en="Secure Storage: Storage in isolated and secure space">التخزين الآمن: التخزين في مساحة معزولة وآمنة</li>
+            </ul>
+
+            <h4 data-lang-ar="إدارة المستخدمين وصلاحياتهم" data-lang-en="User Management and Permissions">إدارة المستخدمين وصلاحياتهم</h4>
+            <ul>
+                <li data-lang-ar="كل مستخدم مرتبط بـ user_id داخلي" data-lang-en="Each user is linked to an internal user_id">كل مستخدم مرتبط بـ <code>user_id</code> داخلي</li>
+                <li data-lang-ar="الأدوار: Owner (كامل الصلاحيات)، Scholar (كتابة المقالات والفتاوى فقط)، User (استخدام المنصة العادي)" data-lang-en="Roles: Owner (Full permissions), Scholar (Can write articles and fatwas only), User (Normal platform usage)"><strong>الأدوار:</strong> Owner → كامل الصلاحيات، Scholar → كتابة المقالات والفتاوى فقط، User → استخدام المنصة العادي</li>
+                <li data-lang-ar="يمكن إضافة أدوار جديدة حسب الحاجة مع تحديد صلاحيات دقيقة" data-lang-en="New roles can be added as needed with precise permissions">يمكن إضافة أدوار جديدة حسب الحاجة مع تحديد صلاحيات دقيقة</li>
+                <li data-lang-ar="واجهة admin.marje3.app تظهر لكل role ما يناسب صلاحياته فقط" data-lang-en="admin.marje3.app interface shows only what's appropriate for each role's permissions">واجهة <code>admin.marje3.app</code> تظهر لكل role ما يناسب صلاحياته فقط</li>
+            </ul>
+
+            <h4 data-lang-ar="بيانات المستخدم" data-lang-en="User Profiles">بيانات المستخدم</h4>
+            <ul>
+                <li data-lang-ar="لكل مستخدم معلومات أساسية: الاسم، البريد، role، آخر تسجيل دخول، تفضيلات اللغة، الحالة النشطة" data-lang-en="Each user has basic information: name, email, role, last login, language preferences, active status">لكل مستخدم معلومات أساسية: الاسم، البريد، role، آخر تسجيل دخول، تفضيلات اللغة، الحالة النشطة</li>
+                <li data-lang-ar="تخصيص واجهة home.marje3.app حسب تفضيلات كل مستخدم" data-lang-en="Customization of home.marje3.app interface based on each user's preferences">تخصيص واجهة <code>home.marje3.app</code> حسب تفضيلات كل مستخدم</li>
+            </ul>
+
+            <h4 data-lang-ar="سجل النشاطات" data-lang-en="Activity Logs">سجل النشاطات</h4>
+            <ul>
+                <li data-lang-ar="لكل مستخدم سجل تغييرات مهمة (تسجيل دخول، تعديل محتوى، إرسال إشعار)" data-lang-en="Each user has a log of important changes (login, content modification, sending notifications)">لكل مستخدم سجل تغييرات مهمة (تسجيل دخول، تعديل محتوى، إرسال إشعار)</li>
+                <li data-lang-ar="تتبع جميع الأنشطة المهمة لكل مستخدم مرتبطة بـ user_id" data-lang-en="Tracking of all important activities for each user linked to user_id">تتبع جميع الأنشطة المهمة لكل مستخدم مرتبطة بـ <code>user_id</code></li>
+                <li data-lang-ar="Audit Logs للأدمن (سجلات التدقيق للمسؤولين): كل إجراء إداري يُسجل ولا يمكن حذفه، Logs محمية من التعديل، تتبع كامل لجميع الإجراءات الإدارية مع timestamp و user_id، سجلات غير قابلة للتغيير أو الحذف لضمان الشفافية والمساءلة" data-lang-en="Audit Logs for Admin: All admin actions are logged and cannot be deleted, logs protected from modification, complete tracking of all administrative actions with timestamp and user_id, immutable logs to ensure transparency and accountability">Audit Logs للأدمن (سجلات التدقيق للمسؤولين): كل إجراء إداري يُسجل ولا يمكن حذفه، Logs محمية من التعديل، تتبع كامل لجميع الإجراءات الإدارية مع timestamp و user_id، سجلات غير قابلة للتغيير أو الحذف لضمان الشفافية والمساءلة</li>
+            </ul>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <h2 data-lang-ar="الميزات الرئيسية" data-lang-en="Key Features">الميزات الرئيسية</h2>
+            
+            <h3 data-lang-ar="المحتوى الديني" data-lang-en="Religious Content">المحتوى الديني</h3>
+            <ul>
+                <li data-lang-ar="حفظ الآيات والأحاديث مع الشرح والمصادر" data-lang-en="Save verses and hadiths with explanations and sources">حفظ الآيات والأحاديث مع الشرح والمصادر</li>
+                <li data-lang-ar="مقاطع علمية ودينية وقنوات المشايخ" data-lang-en="Scientific and religious videos and scholars' channels">مقاطع علمية ودينية وقنوات المشايخ</li>
+                <li data-lang-ar="كلمات الأناشيد، القصائد، الأوراد، الأذكار، والتحصينات" data-lang-en="Lyrics of anasheed, poems, awrad, adhkar, and protective supplications">كلمات الأناشيد، القصائد، الأوراد، الأذكار، والتحصينات</li>
+            </ul>
+
+            <h3 data-lang-ar="التطبيق والمنصات" data-lang-en="Application and Platforms">التطبيق والمنصات</h3>
+            <ul>
+                <li data-lang-ar="نسخة ويب تعمل كـ PWA (Progressive Web App)" data-lang-en="Web version works as PWA (Progressive Web App)">نسخة ويب تعمل كـ PWA (Progressive Web App)</li>
+                <li data-lang-ar="تطبيق واحد يغطي جميع المنصات: iOS، Android، Windows، Web" data-lang-en="Single application covering all platforms: iOS, Android, Windows, Web">تطبيق واحد يغطي جميع المنصات: iOS، Android، Windows، Web</li>
+            </ul>
+
+            <h3 data-lang-ar="اللغات" data-lang-en="Languages">اللغات</h3>
+            <ul>
+                <li data-lang-ar="المحتوى يُدار لكل لغة في قاعدة البيانات مباشرة" data-lang-en="Content is managed for each language directly in the database">المحتوى يُدار لكل لغة في قاعدة البيانات مباشرة</li>
+                <li data-lang-ar="واجهة للتبديل بين العربية، الإنجليزية، ولغات إضافية" data-lang-en="Interface to switch between Arabic, English, and additional languages">واجهة للتبديل بين العربية، الإنجليزية، ولغات إضافية</li>
+                <li data-lang-ar="دعم عرض المحتوى نفسه بعدة لغات دون أي تعارض" data-lang-en="Support displaying the same content in multiple languages without any conflicts">دعم عرض المحتوى نفسه بعدة لغات دون أي تعارض</li>
+            </ul>
+
+            <h3 data-lang-ar="الميزات الدينية" data-lang-en="Religious Features">الميزات الدينية</h3>
+            <ul>
+                <li data-lang-ar="مواقيت الصلاة والقبلة حسب الموقع الجغرافي" data-lang-en="Prayer times and Qibla direction based on geographic location">مواقيت الصلاة والقبلة حسب الموقع الجغرافي</li>
+                <li data-lang-ar="إمكانية تنزيل القرآن والملفات والكتب والفتاوى للعمل بدون إنترنت" data-lang-en="Ability to download Quran, files, books, and fatwas for offline use">إمكانية تنزيل القرآن والملفات والكتب والفتاوى للعمل بدون إنترنت</li>
+            </ul>
+
+            <h3 data-lang-ar="العمل بدون إنترنت" data-lang-en="Offline Functionality">العمل بدون إنترنت</h3>
+            <ul>
+                <li data-lang-ar="إمكانية تنزيل كل البيانات المرغوبة على الجهاز: كتب، فتاوى، أذكار" data-lang-en="Ability to download all desired data to device: books, fatwas, adhkar">إمكانية تنزيل كل البيانات المرغوبة على الجهاز: كتب، فتاوى، أذكار</li>
+                <li data-lang-ar="استخدام هذه البيانات بدون اتصال بالإنترنت بشكل مباشر وموثوق" data-lang-en="Use this data offline directly and reliably without internet connection">استخدام هذه البيانات بدون اتصال بالإنترنت بشكل مباشر وموثوق</li>
+                <li data-lang-ar="تحديث المحتوى: آلية لتحديث المحتوى عند العودة للاتصال بالإنترنت" data-lang-en="Content Updates: Mechanism to update content when returning online">تحديث المحتوى: آلية لتحديث المحتوى عند العودة للاتصال بالإنترنت</li>
+                <li data-lang-ar="حماية حقوق النشر: حماية حقوق النشر للمحتوى المحمل" data-lang-en="Copyright Protection: Copyright protection for downloaded content">حماية حقوق النشر: حماية حقوق النشر للمحتوى المحمل</li>
+            </ul>
+
+            <h3 data-lang-ar="سهولة الاستخدام" data-lang-en="Accessibility">سهولة الاستخدام</h3>
+            <ul>
+                <li data-lang-ar="دعم قارئ الشاشة للمستخدمين ضعاف البصر" data-lang-en="Screen reader support for visually impaired users">دعم قارئ الشاشة للمستخدمين ضعاف البصر</li>
+                <li data-lang-ar="تكبير الخط حسب احتياجات المستخدم" data-lang-en="Font size adjustment according to user needs">تكبير الخط حسب احتياجات المستخدم</li>
+                <li data-lang-ar="ألوان مناسبة للمستخدمين ضعاف البصر" data-lang-en="Appropriate colors for visually impaired users">ألوان مناسبة للمستخدمين ضعاف البصر</li>
+                <li data-lang-ar="واجهة قابلة للتخصيص لسهولة الاستخدام" data-lang-en="Customizable interface for ease of use">واجهة قابلة للتخصيص لسهولة الاستخدام</li>
+                <li data-lang-ar="تكامل ARIA Attributes: لكل عناصر الواجهة لضمان قراءة صحيحة بواسطة screen readers" data-lang-en="ARIA Attributes Integration: For all interface elements to ensure correct reading by screen readers">تكامل ARIA Attributes: لكل عناصر الواجهة لضمان قراءة صحيحة بواسطة screen readers</li>
+                <li data-lang-ar="اختبارات الوصولية: أدوات لفحص WCAG 2.1 على كل صفحة تلقائيًا قبل النشر" data-lang-en="Accessibility Testing: Tools to check WCAG 2.1 on each page automatically before publishing">اختبارات الوصولية: أدوات لفحص WCAG 2.1 على كل صفحة تلقائيًا قبل النشر</li>
+                <li data-lang-ar="التنقل عبر لوحة المفاتيح: جميع الأزرار والروابط قابلة للوصول بدون ماوس" data-lang-en="Keyboard Navigation: All buttons and links accessible without mouse">التنقل عبر لوحة المفاتيح: جميع الأزرار والروابط قابلة للوصول بدون ماوس</li>
+                <li data-lang-ar="اختيار تباين الألوان: أكثر من مستوى لتناسب مختلف حالات ضعف البصر" data-lang-en="Color Contrast Selection: Multiple levels to suit different vision impairment cases">اختيار تباين الألوان: أكثر من مستوى لتناسب مختلف حالات ضعف البصر</li>
+            </ul>
+
+            <h3 data-lang-ar="تحسين محركات البحث (SEO)" data-lang-en="Search Engine Optimization (SEO)">تحسين محركات البحث (SEO)</h3>
+            <ul>
+                <li data-lang-ar="عناوين الصفحات: لكل صفحة عنوان فريد ووصف دقيق يعكس محتواها" data-lang-en="Page Titles: Unique title and accurate description for each page reflecting its content">عناوين الصفحات: لكل صفحة عنوان فريد ووصف دقيق يعكس محتواها</li>
+                <li data-lang-ar="Meta Tags: وصف وكلمات مفتاحية لكل صفحة" data-lang-en="Meta Tags: Description and keywords for each page">Meta Tags: وصف وكلمات مفتاحية لكل صفحة</li>
+                <li data-lang-ar="Sitemap (XML): ملف XML لجميع الصفحات لتسهيل فهرستها لمحركات البحث - ملاحظة مهمة: يتم إضافة Sitemap بعد أن يكون الموقع يعمل 100% مع نجاح جميع الفحوصات والاختبارات - يجب أن يكون الموقع جاهزًا بالكامل قبل إرسال Sitemap لمحركات البحث (Google، Bing، وجميع محركات البحث الأخرى)" data-lang-en="Sitemap (XML): XML file for all pages to facilitate search engine indexing - Important Note: Sitemap should be added AFTER the site is 100% working with all checks and tests successful - The site must be fully ready before submitting Sitemap to search engines (Google, Bing, and all other search engines)">Sitemap (XML): ملف XML لجميع الصفحات لتسهيل فهرستها لمحركات البحث - ملاحظة مهمة: يتم إضافة Sitemap بعد أن يكون الموقع يعمل 100% مع نجاح جميع الفحوصات والاختبارات - يجب أن يكون الموقع جاهزًا بالكامل قبل إرسال Sitemap لمحركات البحث (Google، Bing، وجميع محركات البحث الأخرى)</li>
+                <li data-lang-ar="robots.txt: ملف robots.txt لتوجيه محركات البحث حول الصفحات المسموح بفهرستها - ملاحظة مهمة: يتم إضافة robots.txt بعد أن يكون الموقع يعمل 100% مع نجاح جميع الفحوصات والاختبارات - يجب أن يكون الموقع جاهزًا بالكامل قبل نشر robots.txt لمحركات البحث (Google، Bing، وجميع محركات البحث الأخرى)" data-lang-en="robots.txt: robots.txt file to guide search engines about which pages are allowed to be indexed - Important Note: robots.txt should be added AFTER the site is 100% working with all checks and tests successful - The site must be fully ready before publishing robots.txt to search engines (Google, Bing, and all other search engines)">robots.txt: ملف robots.txt لتوجيه محركات البحث حول الصفحات المسموح بفهرستها - ملاحظة مهمة: يتم إضافة robots.txt بعد أن يكون الموقع يعمل 100% مع نجاح جميع الفحوصات والاختبارات - يجب أن يكون الموقع جاهزًا بالكامل قبل نشر robots.txt لمحركات البحث (Google، Bing، وجميع محركات البحث الأخرى)</li>
+                <li data-lang-ar="Structured Data: استخدام Schema.org لتحديد نوع المحتوى" data-lang-en="Structured Data: Use Schema.org to identify content type">Structured Data: استخدام Schema.org لتحديد نوع المحتوى</li>
+                <li data-lang-ar="URLs صديقة لمحركات البحث: روابط واضحة، قصيرة، تحتوي على الكلمات المفتاحية" data-lang-en="SEO-friendly URLs: Clear, short links containing keywords">URLs صديقة لمحركات البحث: روابط واضحة، قصيرة، تحتوي على الكلمات المفتاحية</li>
+                <li data-lang-ar="تحسين الصور: استخدام ALT Tags ووصف لكل صورة" data-lang-en="Image Optimization: Use ALT tags and description for each image">تحسين الصور: استخدام ALT Tags ووصف لكل صورة</li>
+                <li data-lang-ar="Mobile SEO: التأكد من تجربة مستخدم ممتازة على الجوال" data-lang-en="Mobile SEO: Ensure excellent user experience on mobile">Mobile SEO: التأكد من تجربة مستخدم ممتازة على الجوال</li>
+            </ul>
+
+            <h3 data-lang-ar="التسويق ووسائل التواصل" data-lang-en="Marketing & Social Media">التسويق ووسائل التواصل</h3>
+            <ul>
+                <li data-lang-ar="أزرار المشاركة: لكل محتوى أزرار مشاركة مباشرة على فيسبوك، تويتر، واتساب، لينكدإن، ونسخ الرابط" data-lang-en="Share Buttons: For each content direct share buttons on Facebook, Twitter, WhatsApp, LinkedIn, and Copy Link">أزرار المشاركة: لكل محتوى أزرار مشاركة مباشرة على فيسبوك، تويتر، واتساب، لينكدإن، ونسخ الرابط</li>
+                <li data-lang-ar="Meta Tags للسوشال: Open Graph وTwitter Cards لكل صفحة" data-lang-en="Social Media Meta Tags: Open Graph and Twitter Cards for each page">Meta Tags للسوشال: Open Graph وTwitter Cards لكل صفحة</li>
+                <li data-lang-ar="تشجيع المشاركة داخل المنصة: إمكانية تقييم المحتوى أو إضافة إلى المفضلة" data-lang-en="Encourage Sharing Within Platform: Ability to rate content or add to favorites">تشجيع المشاركة داخل المنصة: إمكانية تقييم المحتوى أو إضافة إلى المفضلة</li>
+                <li data-lang-ar="روابط الحملات: روابط مشاركة مخصصة لكل حملة مع تتبع الأداء" data-lang-en="Campaign Links: Custom share links for each campaign with performance tracking">روابط الحملات: روابط مشاركة مخصصة لكل حملة مع تتبع الأداء</li>
+            </ul>
+
+            <h3 data-lang-ar="شريط الوصول السريع" data-lang-en="Quick Links Bar">شريط الوصول السريع</h3>
+            <ul>
+                <li data-lang-ar="إمكانية إضافة أي رابط من موقع مرجع للوصول السريع" data-lang-en="Ability to add any link from Marje3 site for quick access">إمكانية إضافة أي رابط من موقع مرجع للوصول السريع</li>
+                <li data-lang-ar="خاص بكل مستخدم حسب تفضيلاته" data-lang-en="Specific to each user according to their preferences">خاص بكل مستخدم حسب تفضيلاته</li>
+                <li data-lang-ar="سهولة التنقل بين الصفحات المفضلة" data-lang-en="Easy navigation between favorite pages">سهولة التنقل بين الصفحات المفضلة</li>
+            </ul>
+        </section>
+
+        <!-- Technical Architecture Section -->
+        <section id="technical" class="section">
+            <h2 data-lang-ar="البنية التقنية" data-lang-en="Technical Architecture">البنية التقنية</h2>
+            
+            <h3 data-lang-ar="Technology Stack / التقنيات المستخدمة" data-lang-en="Technology Stack">Technology Stack / التقنيات المستخدمة</h3>
+            
+            <h4 data-lang-ar="Frontend Technologies / تقنيات الواجهة الأمامية" data-lang-en="Frontend Technologies">Frontend Technologies / تقنيات الواجهة الأمامية</h4>
+            <ul>
+                <li data-lang-ar="Framework: Next.js (React-based framework for production)" data-lang-en="Framework: Next.js (React-based framework for production)">Framework: Next.js (React-based framework for production)</li>
+                <li data-lang-ar="Language: TypeScript (for type safety and better development experience)" data-lang-en="Language: TypeScript (for type safety and better development experience)">Language: TypeScript (for type safety and better development experience)</li>
+                <li data-lang-ar="UI Library: React (component-based UI library)" data-lang-en="UI Library: React (component-based UI library)">UI Library: React (component-based UI library)</li>
+                <li data-lang-ar="Styling: CSS Modules / Tailwind CSS (for responsive design)" data-lang-en="Styling: CSS Modules / Tailwind CSS (for responsive design)">Styling: CSS Modules / Tailwind CSS (for responsive design)</li>
+                <li data-lang-ar="PWA: Next.js PWA support (Progressive Web App capabilities)" data-lang-en="PWA: Next.js PWA support (Progressive Web App capabilities)">PWA: Next.js PWA support (Progressive Web App capabilities)</li>
+                <li data-lang-ar="State Management: React Context / Zustand / Redux (as needed)" data-lang-en="State Management: React Context / Zustand / Redux (as needed)">State Management: React Context / Zustand / Redux (as needed)</li>
+                <li data-lang-ar="Internationalization: next-i18next (for Arabic/English support)" data-lang-en="Internationalization: next-i18next (for Arabic/English support)">Internationalization: next-i18next (for Arabic/English support)</li>
+            </ul>
+
+            <h4 data-lang-ar="Backend Technologies / تقنيات الخادم" data-lang-en="Backend Technologies">Backend Technologies / تقنيات الخادم</h4>
+            <ul>
+                <li data-lang-ar="Runtime: Node.js" data-lang-en="Runtime: Node.js">Runtime: Node.js</li>
+                <li data-lang-ar="Framework: Express.js / NestJS (API framework)" data-lang-en="Framework: Express.js / NestJS (API framework)">Framework: Express.js / NestJS (API framework)</li>
+                <li data-lang-ar="Language: TypeScript / JavaScript" data-lang-en="Language: TypeScript / JavaScript">Language: TypeScript / JavaScript</li>
+                <li data-lang-ar="API Architecture: RESTful API (with potential GraphQL for complex queries)" data-lang-en="API Architecture: RESTful API (with potential GraphQL for complex queries)">API Architecture: RESTful API (with potential GraphQL for complex queries)</li>
+                <li data-lang-ar="Authentication: Google OAuth 2.0, JWT (JSON Web Tokens)" data-lang-en="Authentication: Google OAuth 2.0, JWT (JSON Web Tokens)">Authentication: Google OAuth 2.0, JWT (JSON Web Tokens)</li>
+            </ul>
+
+            <h4 data-lang-ar="Database & Storage / قاعدة البيانات والتخزين" data-lang-en="Database & Storage">Database & Storage / قاعدة البيانات والتخزين</h4>
+            <ul>
+                <li data-lang-ar="Database: PostgreSQL / MySQL (relational database for structured data)" data-lang-en="Database: PostgreSQL / MySQL (relational database for structured data)">Database: PostgreSQL / MySQL (relational database for structured data)</li>
+                <li data-lang-ar="ORM/Query Builder: Prisma / TypeORM / Sequelize" data-lang-en="ORM/Query Builder: Prisma / TypeORM / Sequelize">ORM/Query Builder: Prisma / TypeORM / Sequelize</li>
+                <li data-lang-ar="File Storage: AWS S3 (for media files, documents, backups)" data-lang-en="File Storage: AWS S3 (for media files, documents, backups)">File Storage: AWS S3 (for media files, documents, backups)</li>
+                <li data-lang-ar="Caching: Redis (for session management and caching)" data-lang-en="Caching: Redis (for session management and caching)">Caching: Redis (for session management and caching)</li>
+            </ul>
+
+            <h4 data-lang-ar="Cloud Services & Infrastructure / الخدمات السحابية والبنية التحتية" data-lang-en="Cloud Services & Infrastructure">Cloud Services & Infrastructure / الخدمات السحابية والبنية التحتية</h4>
+            <ul>
+                <li data-lang-ar="Cloud Provider: AWS (Amazon Web Services) - EC2/ECS/Lambda, RDS, S3, CloudFront, Route 53, CloudWatch" data-lang-en="Cloud Provider: AWS (Amazon Web Services) - EC2/ECS/Lambda, RDS, S3, CloudFront, Route 53, CloudWatch">Cloud Provider: AWS (Amazon Web Services) - EC2/ECS/Lambda, RDS, S3, CloudFront, Route 53, CloudWatch</li>
+                <li data-lang-ar="CDN: Cloudflare - Content delivery network, DDoS protection, SSL/TLS certificates, caching" data-lang-en="CDN: Cloudflare - Content delivery network, DDoS protection, SSL/TLS certificates, caching">CDN: Cloudflare - Content delivery network, DDoS protection, SSL/TLS certificates, caching</li>
+                <li data-lang-ar="Code Repository: GitHub - Version control (Git), CI/CD pipelines (GitHub Actions), code review and collaboration" data-lang-en="Code Repository: GitHub - Version control (Git), CI/CD pipelines (GitHub Actions), code review and collaboration">Code Repository: GitHub - Version control (Git), CI/CD pipelines (GitHub Actions), code review and collaboration</li>
+            </ul>
+
+            <h4 data-lang-ar="DevOps & Deployment / DevOps والنشر" data-lang-en="DevOps & Deployment">DevOps & Deployment / DevOps والنشر</h4>
+            <ul>
+                <li data-lang-ar="CI/CD: GitHub Actions - Automated testing, building, deployment, environment management" data-lang-en="CI/CD: GitHub Actions - Automated testing, building, deployment, environment management">CI/CD: GitHub Actions - Automated testing, building, deployment, environment management</li>
+                <li data-lang-ar="Monitoring: CloudWatch (AWS), Prometheus/Grafana (for metrics), Sentry (for error tracking)" data-lang-en="Monitoring: CloudWatch (AWS), Prometheus/Grafana (for metrics), Sentry (for error tracking)">Monitoring: CloudWatch (AWS), Prometheus/Grafana (for metrics), Sentry (for error tracking)</li>
+                <li data-lang-ar="Logging: CloudWatch Logs / ELK Stack" data-lang-en="Logging: CloudWatch Logs / ELK Stack">Logging: CloudWatch Logs / ELK Stack</li>
+            </ul>
+
+            <h4 data-lang-ar="Security & Testing / الأمان والاختبار" data-lang-en="Security & Testing">Security & Testing / الأمان والاختبار</h4>
+            <ul>
+                <li data-lang-ar="Security Scanning: Dependency vulnerability scanning (npm audit, Snyk), Code security analysis (SonarQube)" data-lang-en="Security Scanning: Dependency vulnerability scanning (npm audit, Snyk), Code security analysis (SonarQube)">Security Scanning: Dependency vulnerability scanning (npm audit, Snyk), Code security analysis (SonarQube)</li>
+                <li data-lang-ar="Testing Frameworks: Jest (unit testing), React Testing Library (component testing), Playwright/Cypress (E2E testing)" data-lang-en="Testing Frameworks: Jest (unit testing), React Testing Library (component testing), Playwright/Cypress (E2E testing)">Testing Frameworks: Jest (unit testing), React Testing Library (component testing), Playwright/Cypress (E2E testing)</li>
+                <li data-lang-ar="Security Tools: OWASP ZAP (penetration testing), SSL Labs (SSL/TLS testing)" data-lang-en="Security Tools: OWASP ZAP (penetration testing), SSL Labs (SSL/TLS testing)">Security Tools: OWASP ZAP (penetration testing), SSL Labs (SSL/TLS testing)</li>
+            </ul>
+
+            <h4 data-lang-ar="Additional Tools & Services / أدوات وخدمات إضافية" data-lang-en="Additional Tools & Services">Additional Tools & Services / أدوات وخدمات إضافية</h4>
+            <ul>
+                <li data-lang-ar="Email Service: AWS SES / SendGrid (for transactional emails)" data-lang-en="Email Service: AWS SES / SendGrid (for transactional emails)">Email Service: AWS SES / SendGrid (for transactional emails)</li>
+                <li data-lang-ar="Push Notifications: Firebase Cloud Messaging / OneSignal" data-lang-en="Push Notifications: Firebase Cloud Messaging / OneSignal">Push Notifications: Firebase Cloud Messaging / OneSignal</li>
+                <li data-lang-ar="Analytics: Google Analytics / Custom analytics dashboard" data-lang-en="Analytics: Google Analytics / Custom analytics dashboard">Analytics: Google Analytics / Custom analytics dashboard</li>
+                <li data-lang-ar="Search: Elasticsearch / Algolia (for advanced search capabilities)" data-lang-en="Search: Elasticsearch / Algolia (for advanced search capabilities)">Search: Elasticsearch / Algolia (for advanced search capabilities)</li>
+                <li data-lang-ar="AI/ML Services: OpenAI API / Custom AI models (for search and recommendations)" data-lang-en="AI/ML Services: OpenAI API / Custom AI models (for search and recommendations)">AI/ML Services: OpenAI API / Custom AI models (for search and recommendations)</li>
+            </ul>
+            
+            <h3 data-lang-ar="قاعدة البيانات والملفات" data-lang-en="Database and Files">قاعدة البيانات والملفات</h3>
+            <ul>
+                <li data-lang-ar="قاعدة بيانات واحدة وملفات واحدة لكل السب دومينز والصفحات" data-lang-en="Single database and files storage for all subdomains and pages">قاعدة بيانات واحدة وملفات واحدة لكل السب دومينز والصفحات</li>
+                <li data-lang-ar="جميع الملفات والبيانات مخزنة على api.marje3.app" data-lang-en="All files and data are stored on api.marje3.app">جميع الملفات والبيانات مخزنة على <code>api.marje3.app</code></li>
+                <li data-lang-ar="كل صفحة/سب دومين يسحب فقط البيانات اللي يحتاجها من خلال الـ API" data-lang-en="Each page/subdomain pulls only the data it needs through the API">كل صفحة/سب دومين يسحب فقط البيانات اللي يحتاجها من خلال الـ API</li>
+                <li data-lang-ar="كل جدول مربوط بـ user_id" data-lang-en="Each table is linked to user_id">كل جدول مربوط بـ <code>user_id</code></li>
+                <li data-lang-ar="Data Residency (إقامة البيانات): تحديد AWS Region أساسي لتخزين البيانات، منع نقل البيانات خارج المنطقة المحددة إلا عند وجود ضرورة تقنية، الامتثال لمتطلبات إقامة البيانات حسب القوانين المحلية" data-lang-en="Data Residency: Define primary AWS Region for data storage, prevent data transfer outside specified region except for technical necessity, compliance with data residency requirements according to local laws">Data Residency (إقامة البيانات): تحديد AWS Region أساسي لتخزين البيانات، منع نقل البيانات خارج المنطقة المحددة إلا عند وجود ضرورة تقنية، الامتثال لمتطلبات إقامة البيانات حسب القوانين المحلية</li>
+                <li data-lang-ar="Data Classification (تصنيف البيانات): تصنيف البيانات إلى Public / Internal / Sensitive، تطبيق سياسات مختلفة لكل فئة (تخزين، وصول، تشفير)، تحديد مستوى الحماية المناسب لكل فئة بيانات" data-lang-en="Data Classification: Classify data into Public / Internal / Sensitive, apply different policies for each category (storage, access, encryption), define appropriate protection level for each data category">Data Classification (تصنيف البيانات): تصنيف البيانات إلى Public / Internal / Sensitive، تطبيق سياسات مختلفة لكل فئة (تخزين، وصول، تشفير)، تحديد مستوى الحماية المناسب لكل فئة بيانات</li>
+            </ul>
+
+            <h3 data-lang-ar="سب دومينز وربطهم" data-lang-en="Subdomains and Their Connections">سب دومينز وربطهم</h3>
+            <ul>
+                <li data-lang-ar="كل سب دومين مستقل من حيث الملفات والواجهة، لكنه مرتبط بالـ API على api.marje3.app" data-lang-en="Each subdomain is independent in terms of frontend files and UI, but connected to the API on api.marje3.app">كل سب دومين مستقل من حيث الملفات والواجهة، لكنه مرتبط بالـ API على <code>api.marje3.app</code></li>
+                <li data-lang-ar="المصادقة المشتركة (SSO): SSO موحّد عبر جميع السب دومينز، Token مشترك بين جميع السب دومينز، Cookie policy واضحة (SameSite)، Refresh token mechanism موثق" data-lang-en="Shared Authentication (SSO): Unified SSO across all subdomains, Shared token between all subdomains, Clear cookie policy (SameSite), Documented refresh token mechanism">المصادقة المشتركة (SSO): SSO موحّد عبر جميع السب دومينز، Token مشترك بين جميع السب دومينز، Cookie policy واضحة (SameSite)، Refresh token mechanism موثق</li>
+            </ul>
+
+            <h3 data-lang-ar="الأمان" data-lang-en="Security">الأمان</h3>
+            <ul>
+                <li data-lang-ar="ملاحظة مهمة: هذا المشروع لديه أعداء معروفون جيدًا، وإذا أصبح المشروع ناجحًا جدًا، سيحاولون فعل أي شيء لإسقاطه. لذلك يجب تطبيق أعلى معايير الأمان والحماية." data-lang-en="Important Note: This project has known enemies, and if the project becomes very successful, they will try to do anything to bring it down. Therefore, the highest security and protection standards must be applied.">ملاحظة مهمة: هذا المشروع لديه أعداء معروفون جيدًا، وإذا أصبح المشروع ناجحًا جدًا، سيحاولون فعل أي شيء لإسقاطه. لذلك يجب تطبيق أعلى معايير الأمان والحماية.</li>
+                <li data-lang-ar="حماية من إساءة الاستخدام والهجمات: يتم تطبيق سياسات حماية من إساءة الاستخدام والهجمات (Rate Limiting، WAF، DDoS Protection) لتقليل المخاطر الأمنية ومنع أي استهلاك غير طبيعي قد يؤدي إلى تكاليف غير متوقعة." data-lang-en="Protection Against Abuse and Attacks: Protection policies against abuse and attacks (Rate Limiting, WAF, DDoS Protection) are applied to reduce security risks and prevent any abnormal consumption that may lead to unexpected costs.">حماية من إساءة الاستخدام والهجمات: يتم تطبيق سياسات حماية من إساءة الاستخدام والهجمات (Rate Limiting، WAF، DDoS Protection) لتقليل المخاطر الأمنية ومنع أي استهلاك غير طبيعي قد يؤدي إلى تكاليف غير متوقعة.</li>
+                <li data-lang-ar="مبادئ الأمان الأساسية: 1) الحماية قبل كل شيء - أي ميزة أو محتوى جديد لازم يتم اختباره ضد أي هجوم محتمل قبل الإطلاق، 2) الدفاع متعدد الطبقات - Cloudflare/WAF/DDoS Protection على كل مستويات الوصول، Rate Limiting صارم، IP Blacklisting/Geoblocking، Authentication قوية (2FA, Tokens)، Logging & Monitoring مع تنبيهات فورية، 3) خطط الطوارئ - Hard Spending & Traffic Caps، خطط Backup & Recovery سريعة، سيناريوهات Incident Response محددة، 4) التصميم من البداية ضد الهجمات - Feature Flags، Rate-limited Search Index، Minimal Attack Surface، 5) الثقافة الأمنية دائماً حاضرة - كل شخص واعي لمخاطر الهجوم، أي محتوى حساس يتم مراقبته ومؤمن قبل الإطلاق" data-lang-en="Core Security Principles: 1) Protection Before Everything - Any new feature or content must be tested against potential attacks before launch, 2) Defense in Depth - Cloudflare/WAF/DDoS Protection at all access levels, Strict Rate Limiting, IP Blacklisting/Geoblocking, Strong Authentication (2FA, Tokens), Logging & Monitoring with immediate alerts, 3) Emergency Plans - Hard Spending & Traffic Caps, Fast Backup & Recovery plans, Specific Incident Response scenarios, 4) Design from the Beginning Against Attacks - Feature Flags, Rate-limited Search Index, Minimal Attack Surface, 5) Security Culture Always Present - Everyone aware of attack risks, any sensitive content monitored and secured before launch">مبادئ الأمان الأساسية: 1) الحماية قبل كل شيء - أي ميزة أو محتوى جديد لازم يتم اختباره ضد أي هجوم محتمل قبل الإطلاق، 2) الدفاع متعدد الطبقات - Cloudflare/WAF/DDoS Protection على كل مستويات الوصول، Rate Limiting صارم، IP Blacklisting/Geoblocking، Authentication قوية (2FA, Tokens)، Logging & Monitoring مع تنبيهات فورية، 3) خطط الطوارئ - Hard Spending & Traffic Caps، خطط Backup & Recovery سريعة، سيناريوهات Incident Response محددة، 4) التصميم من البداية ضد الهجمات - Feature Flags، Rate-limited Search Index، Minimal Attack Surface، 5) الثقافة الأمنية دائماً حاضرة - كل شخص واعي لمخاطر الهجوم، أي محتوى حساس يتم مراقبته ومؤمن قبل الإطلاق</li>
+                <li data-lang-ar="تشفير جميع البيانات الحساسة في قاعدة البيانات" data-lang-en="Encryption of all sensitive data in the database">تشفير جميع البيانات الحساسة في قاعدة البيانات</li>
+                <li data-lang-ar="حماية الـ API بمفاتيح وصول أو OAuth" data-lang-en="API protection with access keys or OAuth">حماية الـ API بمفاتيح وصول أو OAuth</li>
+                <li data-lang-ar="مراقبة النشاطات غير الطبيعية لتجنب الحسابات الوهمية" data-lang-en="Monitoring of abnormal activities to avoid fake accounts">مراقبة النشاطات غير الطبيعية لتجنب الحسابات الوهمية</li>
+                <li data-lang-ar="Rate Limiting: تحديد حد أقصى لعدد الطلبات لكل مستخدم/IP لمنع الإساءة - خوارزمية: Sliding Window - Headers: مفعّلة (X-RateLimit-*) - IPs موثوقة (admin / internal) مستثناة" data-lang-en="Rate Limiting: Maximum request limits per user/IP to prevent abuse - Algorithm: Sliding Window - Headers: Enabled (X-RateLimit-*) - Trusted IPs (admin / internal) are exempt">Rate Limiting: تحديد حد أقصى لعدد الطلبات لكل مستخدم/IP لمنع الإساءة - خوارزمية: Sliding Window - Headers: مفعّلة (X-RateLimit-*) - IPs موثوقة (admin / internal) مستثناة</li>
+                <li data-lang-ar="Login Attempts: تحديد عدد محاولات تسجيل الدخول (مثلاً 5 محاولات خلال 10 دقائق) قبل حظر مؤقت" data-lang-en="Login Attempts: Define number of login attempts (e.g., 5 attempts within 10 minutes) before temporary ban">Login Attempts: تحديد عدد محاولات تسجيل الدخول (مثلاً 5 محاولات خلال 10 دقائق) قبل حظر مؤقت</li>
+                <li data-lang-ar="API Requests Limits: /search → 50 طلب/دقيقة، /download → 10 طلب/دقيقة، /notifications/send → 5 طلب/دقيقة" data-lang-en="API Requests Limits: /search → 50 requests/minute, /download → 10 requests/minute, /notifications/send → 5 requests/minute">API Requests Limits: <code>/search</code> → 50 طلب/دقيقة، <code>/download</code> → 10 طلب/دقيقة، <code>/notifications/send</code> → 5 طلب/دقيقة</li>
+                <li data-lang-ar="Download Limits: الحد على حجم أو عدد الملفات القابلة للتحميل خلال فترة محددة" data-lang-en="Download Limits: Limit on size or number of downloadable files within a period">Download Limits: الحد على حجم أو عدد الملفات القابلة للتحميل خلال فترة محددة</li>
+                <li data-lang-ar="Burst Control: التحكم في الزيادات المفاجئة بالطلبات لتجنب هجمات الـ DDoS" data-lang-en="Burst Control: Control sudden request spikes to avoid DDoS attacks">Burst Control: التحكم في الزيادات المفاجئة بالطلبات لتجنب هجمات الـ DDoS</li>
+                <li data-lang-ar="API Versioning: نظام إصدارات للـ API لضمان التوافق" data-lang-en="API Versioning: API versioning system to ensure compatibility">API Versioning: نظام إصدارات للـ API لضمان التوافق</li>
+                <li data-lang-ar="Rate Limiting صارم على: تسجيل الدخول، API، التحميل" data-lang-en="Strict Rate Limiting on: Login, API, Downloads">Rate Limiting صارم على: تسجيل الدخول، API، التحميل</li>
+                <li data-lang-ar="Cloudflare DDoS Protection: حجب تلقائي للهجمات قبل وصولها للسيرفر" data-lang-en="Cloudflare DDoS Protection: Automatic blocking of attacks before they reach the server">Cloudflare DDoS Protection: حجب تلقائي للهجمات قبل وصولها للسيرفر</li>
+                <li data-lang-ar="WAF Rules (Web Application Firewall): حظر الدول أو الأنماط المشبوهة عند الحاجة" data-lang-en="WAF Rules (Web Application Firewall): Block countries or suspicious patterns when needed">WAF Rules (Web Application Firewall): حظر الدول أو الأنماط المشبوهة عند الحاجة</li>
+                <li data-lang-ar="Request Validation: منع الطلبات غير المكتملة أو المشبوهة مبكرًا" data-lang-en="Request Validation: Prevent incomplete or suspicious requests early">Request Validation: منع الطلبات غير المكتملة أو المشبوهة مبكرًا</li>
+                <li data-lang-ar="IP Blacklisting / Geoblocking: حظر الدول أو الشبكات المشبوهة" data-lang-en="IP Blacklisting / Geoblocking: Block suspicious countries or networks">IP Blacklisting / Geoblocking: حظر الدول أو الشبكات المشبوهة</li>
+                <li data-lang-ar="Minimal Attack Surface: تقليل النقاط اللي ممكن يستغلها أي مهاجم" data-lang-en="Minimal Attack Surface: Reduce points that any attacker could exploit">Minimal Attack Surface: تقليل النقاط اللي ممكن يستغلها أي مهاجم</li>
+                <li data-lang-ar="CORS Policies: سياسات صارمة للـ CORS لحماية المنصة" data-lang-en="CORS Policies: Strict CORS policies to protect the platform">CORS Policies: سياسات صارمة للـ CORS لحماية المنصة</li>
+                <li data-lang-ar="Session Management: إدارة الجلسات مع انتهاء صلاحية تلقائي" data-lang-en="Session Management: Session management with automatic expiration">Session Management: إدارة الجلسات مع انتهاء صلاحية تلقائي</li>
+                <li data-lang-ar="Key Management (إدارة المفاتيح): إدارة مفاتيح التشفير (KMS)، تدوير المفاتيح دوريًا، فصل مفاتيح الإنتاج عن الاختبار" data-lang-en="Key Management: Encryption key management (KMS), periodic key rotation, separation of production and test keys">Key Management (إدارة المفاتيح): إدارة مفاتيح التشفير (KMS)، تدوير المفاتيح دوريًا، فصل مفاتيح الإنتاج عن الاختبار</li>
+                <li data-lang-ar="Secrets Management (إدارة الأسرار): عدم تخزين أي secrets داخل الكود، استخدام Secret Manager (AWS Secrets Manager / Environment Variables)، جميع الأسرار الحساسة (API keys, database passwords, etc.) محفوظة في Secret Manager" data-lang-en="Secrets Management: No secrets stored in code, use Secret Manager (AWS Secrets Manager / Environment Variables), all sensitive secrets (API keys, database passwords, etc.) stored in Secret Manager">Secrets Management (إدارة الأسرار): عدم تخزين أي secrets داخل الكود، استخدام Secret Manager (AWS Secrets Manager / Environment Variables)، جميع الأسرار الحساسة (API keys, database passwords, etc.) محفوظة في Secret Manager</li>
+                <li data-lang-ar="Data Integrity (سلامة البيانات): Hash للمحتوى الحساس، كشف أي تعديل غير مصرح به، التحقق من سلامة البيانات بشكل دوري" data-lang-en="Data Integrity: Hash for sensitive content, detect unauthorized modifications, periodic data integrity verification">Data Integrity (سلامة البيانات): Hash للمحتوى الحساس، كشف أي تعديل غير مصرح به، التحقق من سلامة البيانات بشكل دوري</li>
+            </ul>
+
+            <h3 data-lang-ar="اختبارات الأمان" data-lang-en="Security Testing">اختبارات الأمان</h3>
+            <ul>
+                <li data-lang-ar="Penetration Testing: محاكاة هجمات حقيقية على المنصة لاكتشاف نقاط الضعف" data-lang-en="Penetration Testing: Simulate real attacks on the platform to discover vulnerabilities">Penetration Testing: محاكاة هجمات حقيقية على المنصة لاكتشاف نقاط الضعف</li>
+                <li data-lang-ar="Vulnerability Scanning: استخدام أدوات آلية لفحص المنصة بشكل دوري لاكتشاف ثغرات معروفة" data-lang-en="Vulnerability Scanning: Use automated tools to scan the platform periodically to discover known vulnerabilities">Vulnerability Scanning: استخدام أدوات آلية لفحص المنصة بشكل دوري لاكتشاف ثغرات معروفة</li>
+                <li data-lang-ar="Security Audits: مراجعة السياسات، الصلاحيات، إعدادات الخوادم، تشفير البيانات" data-lang-en="Security Audits: Review policies, permissions, server settings, data encryption">Security Audits: مراجعة السياسات، الصلاحيات، إعدادات الخوادم، تشفير البيانات</li>
+            </ul>
+
+            <h3 data-lang-ar="النسخ الاحتياطي" data-lang-en="Backup">النسخ الاحتياطي</h3>
+            <ul>
+                <li data-lang-ar="خطة يومية/أسبوعية لقاعدة البيانات والملفات المهمة" data-lang-en="Daily/weekly plan for database and important files">خطة يومية/أسبوعية لقاعدة البيانات والملفات المهمة</li>
+                <li data-lang-ar="نسخ احتياطي تلقائي لضمان استمرارية الخدمة" data-lang-en="Automatic backup to ensure service continuity">نسخ احتياطي تلقائي لضمان استمرارية الخدمة</li>
+                <li data-lang-ar="تشفير النسخ الاحتياطي: جميع النسخ الاحتياطية مشفرة" data-lang-en="Backup Encryption: All backups are encrypted">تشفير النسخ الاحتياطي: جميع النسخ الاحتياطية مشفرة</li>
+                <li data-lang-ar="فترة الاحتفاظ: تحديد فترة الاحتفاظ بالنسخ الاحتياطية (مثل 30/90 يوم)" data-lang-en="Retention Period: Define backup retention period (e.g., 30/90 days)">فترة الاحتفاظ: تحديد فترة الاحتفاظ بالنسخ الاحتياطية (مثل 30/90 يوم)</li>
+                <li data-lang-ar="اختبار الاستعادة: اختبار دوري لعملية استعادة البيانات" data-lang-en="Restore Testing: Periodic testing of data restore process">اختبار الاستعادة: اختبار دوري لعملية استعادة البيانات</li>
+            </ul>
+
+            <h3 data-lang-ar="الأداء" data-lang-en="Performance">الأداء</h3>
+            <ul>
+                <li data-lang-ar="مؤشرات سرعة التحميل لكل سب دومين" data-lang-en="Loading speed indicators for each subdomain">مؤشرات سرعة التحميل لكل سب دومين</li>
+                <li data-lang-ar="تحسين PWA للتحميل السريع" data-lang-en="PWA optimization for fast loading">تحسين PWA للتحميل السريع</li>
+                <li data-lang-ar="CDN للعناصر الثابتة: استخدام CDN للصور والملفات الثابتة" data-lang-en="CDN for Static Assets: Use CDN for images and static files">CDN للعناصر الثابتة: استخدام CDN للصور والملفات الثابتة</li>
+                <li data-lang-ar="فهرسة قاعدة البيانات: فهرسة على user_id والحقول المستخدمة بكثرة" data-lang-en="Database Indexing: Indexing on user_id and frequently used fields">فهرسة قاعدة البيانات: فهرسة على <code>user_id</code> والحقول المستخدمة بكثرة</li>
+            </ul>
+
+            <h3 data-lang-ar="معالجة الأخطاء" data-lang-en="Error Handling">معالجة الأخطاء</h3>
+            <ul>
+                <li data-lang-ar="آلية للإبلاغ عن الأخطاء التقنية تلقائيًا للـ admin" data-lang-en="Mechanism to automatically report technical errors to admin">آلية للإبلاغ عن الأخطاء التقنية تلقائيًا للـ admin</li>
+                <li data-lang-ar="تتبع الأخطاء وتسجيلها في سجل منفصل" data-lang-en="Error tracking and logging in a separate log">تتبع الأخطاء وتسجيلها في سجل منفصل</li>
+                <li data-lang-ar="تنظيف معلومات الأخطاء: إزالة المعلومات الحساسة من رسائل الخطأ" data-lang-en="Error Sanitization: Remove sensitive information from error messages">تنظيف معلومات الأخطاء: إزالة المعلومات الحساسة من رسائل الخطأ</li>
+            </ul>
+
+            <h3 data-lang-ar="المراقبة والتنبيهات في الوقت الحقيقي" data-lang-en="Real-time Monitoring & Alerting">المراقبة والتنبيهات في الوقت الحقيقي</h3>
+            <ul>
+                <li data-lang-ar="Alerting في الوقت الحقيقي: إرسال تنبيهات فور وقوع أي خطأ تقني أو نشاط غير طبيعي (email, SMS, Slack)" data-lang-en="Real-time Alerting: Send alerts immediately upon any technical error or abnormal activity (email, SMS, Slack)">Alerting في الوقت الحقيقي: إرسال تنبيهات فور وقوع أي خطأ تقني أو نشاط غير طبيعي (email, SMS, Slack)</li>
+                <li data-lang-ar="Dashboard مركزي: لوحة تعرض مؤشرات الأداء لكل سب دومين مع الرسوم البيانية للـ CPU, Memory, Load, Response Time" data-lang-en="Central Dashboard: Panel displaying performance indicators for each subdomain with graphs for CPU, Memory, Load, Response Time">Dashboard مركزي: لوحة تعرض مؤشرات الأداء لكل سب دومين مع الرسوم البيانية للـ CPU, Memory, Load, Response Time</li>
+                <li data-lang-ar="سجلات مفصّلة: لكل طلب API، تسجيل الوقت، نوع العملية، المستخدم، نتيجة العملية - خصوصية السجلات: بدون IP خام بعد anonymization - فترة الاحتفاظ: Retention محدد (مثلاً 90 يوم) - لا Logs حساسة: لا تظهر Logs حساسة للمستخدم" data-lang-en="Detailed Logs: For each API request, log time, operation type, user, operation result - Log Privacy: No raw IP after anonymization - Retention: Defined retention (e.g., 90 days) - No Sensitive Logs: No sensitive logs shown to users">سجلات مفصّلة: لكل طلب API، تسجيل الوقت، نوع العملية، المستخدم، نتيجة العملية - خصوصية السجلات: بدون IP خام بعد anonymization - فترة الاحتفاظ: Retention محدد (مثلاً 90 يوم) - لا Logs حساسة: لا تظهر Logs حساسة للمستخدم</li>
+                <li data-lang-ar="مستوى التحذير: تصنيف الأخطاء حسب الأهمية (Critical, Warning, Info)" data-lang-en="Warning Level: Classify errors by importance (Critical, Warning, Info)">مستوى التحذير: تصنيف الأخطاء حسب الأهمية (Critical, Warning, Info)</li>
+                <li data-lang-ar="مراقبة uptime و latency: قياس الاستجابة لكل endpoint وسب دومين بشكل دوري" data-lang-en="Uptime and Latency Monitoring: Measure response for each endpoint and subdomain periodically">مراقبة uptime و latency: قياس الاستجابة لكل endpoint وسب دومين بشكل دوري</li>
+                <li data-lang-ar="Time Synchronization (تزامن الوقت): توحيد الوقت (UTC)، مهم للسجلات، الإشعارات، والتحليلات، جميع السجلات والأحداث تستخدم UTC لضمان الدقة والاتساق" data-lang-en="Time Synchronization: Unified time using UTC, important for logs, notifications, and analytics, all logs and events use UTC to ensure accuracy and consistency">Time Synchronization (تزامن الوقت): توحيد الوقت (UTC)، مهم للسجلات، الإشعارات، والتحليلات، جميع السجلات والأحداث تستخدم UTC لضمان الدقة والاتساق</li>
+                <li data-lang-ar="Cost Monitoring (مراقبة التكاليف): تنبيهات فورية عند ارتفاع تكاليف AWS وCDN، تحديد حدود إنفاق شهرية لتجنّب أي تجاوز غير متوقّع، تتبع التكاليف بشكل دوري وتحليل الاتجاهات، تنبيه عند تجاوز 50% / 80% من الميزانية الشهرية، إيقاف أو تقييد بعض الخدمات تلقائيًا عند الحد الأعلى" data-lang-en="Cost Monitoring: Immediate alerts when AWS and CDN costs increase, set monthly spending limits to avoid unexpected overruns, periodic cost tracking and trend analysis, alert when exceeding 50% / 80% of monthly budget, automatic stop or restriction of some services at maximum limit">Cost Monitoring (مراقبة التكاليف): تنبيهات فورية عند ارتفاع تكاليف AWS وCDN، تحديد حدود إنفاق شهرية لتجنّب أي تجاوز غير متوقّع، تتبع التكاليف بشكل دوري وتحليل الاتجاهات، تنبيه عند تجاوز 50% / 80% من الميزانية الشهرية، إيقاف أو تقييد بعض الخدمات تلقائيًا عند الحد الأعلى</li>
+                <li data-lang-ar="كيف يزيد الهجوم التكلفة: Bandwidth (طلبات وهمية = نقل بيانات أكثر = فاتورة أعلى)، CDN (كثرة الطلبات على الملفات الثابتة ترفع الاستهلاك)، API / Compute (كل request يستهلك CPU ووقت تشغيل)، Logs & Monitoring (تضخّم السجلات بسبب كثرة الأخطاء)، Storage مؤقت (تراكم بيانات أو كاش غير منضبط)" data-lang-en="How Attacks Increase Costs: Bandwidth (Fake requests = more data transfer = higher bill), CDN (High requests on static files increase consumption), API / Compute (Each request consumes CPU and runtime), Logs & Monitoring (Log inflation due to many errors), Temporary Storage (Accumulation of unregulated data or cache)">كيف يزيد الهجوم التكلفة: Bandwidth (طلبات وهمية = نقل بيانات أكثر = فاتورة أعلى)، CDN (كثرة الطلبات على الملفات الثابتة ترفع الاستهلاك)، API / Compute (كل request يستهلك CPU ووقت تشغيل)، Logs & Monitoring (تضخّم السجلات بسبب كثرة الأخطاء)، Storage مؤقت (تراكم بيانات أو كاش غير منضبط)</li>
+            </ul>
+
+            <h3 data-lang-ar="خطة الطوارئ التقنية" data-lang-en="Technical Emergency Plan">خطة الطوارئ التقنية</h3>
+            <ul>
+                <li data-lang-ar="لو حصل خلل أو تسريب، طريقة التعامل مع المحتوى الحساس" data-lang-en="If a malfunction or leak occurs, method to handle sensitive content">لو حصل خلل أو تسريب، طريقة التعامل مع المحتوى الحساس</li>
+                <li data-lang-ar="آلية سريعة للتعامل مع الحالات الطارئة التقنية" data-lang-en="Quick mechanism to handle technical emergency situations">آلية سريعة للتعامل مع الحالات الطارئة التقنية</li>
+                <li data-lang-ar="حماية البيانات والمحتوى في حالة الطوارئ" data-lang-en="Data and content protection in case of emergencies">حماية البيانات والمحتوى في حالة الطوارئ</li>
+                <li data-lang-ar="سيناريوهات Incident Response محددة: من يحظر، من يراقب، من يتدخل، وغيرها" data-lang-en="Specific Incident Response Scenarios: who blocks, who monitors, who intervenes, etc.">سيناريوهات Incident Response محددة: من يحظر، من يراقب، من يتدخل، وغيرها</li>
+                <li data-lang-ar="خطط Backup & Recovery سريعة: تضمن عدم خسارة المحتوى أو توقف الخدمة" data-lang-en="Fast Backup & Recovery Plans: ensure no content loss or service interruption">خطط Backup & Recovery سريعة: تضمن عدم خسارة المحتوى أو توقف الخدمة</li>
+                <li data-lang-ar="Hard Spending & Traffic Caps: لتجنب استغلال الهجمات للرفع على التكلفة" data-lang-en="Hard Spending & Traffic Caps: to prevent attacks from exploiting cost increases">Hard Spending & Traffic Caps: لتجنب استغلال الهجمات للرفع على التكلفة</li>
+                <li data-lang-ar="RTO/RPO محددة: تحديد أهداف وقت الاستعادة (RTO) ونقطة الاستعادة (RPO)" data-lang-en="Defined RTO/RPO: Define Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO)">RTO/RPO محددة: تحديد أهداف وقت الاستعادة (RTO) ونقطة الاستعادة (RPO)</li>
+                <li data-lang-ar="Failover تلقائي: آليات التحويل التلقائي في حالة فشل الخادم" data-lang-en="Automatic Failover: Automatic failover mechanisms in case of server failure">Failover تلقائي: آليات التحويل التلقائي في حالة فشل الخادم</li>
+                <li data-lang-ar="خطة التواصل: خطة واضحة للتواصل مع المستخدمين في حالة الطوارئ" data-lang-en="Communication Plan: Clear plan for communicating with users during emergencies">خطة التواصل: خطة واضحة للتواصل مع المستخدمين في حالة الطوارئ</li>
+                <li data-lang-ar="Redundancy & Load Balancing: تخطيط للنسخ الاحتياطية وموازنة الأحمال" data-lang-en="Redundancy & Load Balancing: Planning for redundancy and load balancing">Redundancy & Load Balancing: تخطيط للنسخ الاحتياطية وموازنة الأحمال</li>
+                <li data-lang-ar="Maintenance Mode (وضع الصيانة): وضع صيانة رسمي، رسالة موحدة للمستخدمين، إمكانية تفعيل وضع الصيانة بسهولة عند الحاجة، إشعار مسبق للمستخدمين عند التخطيط للصيانة" data-lang-en="Maintenance Mode: Official maintenance mode, unified message for users, easy activation of maintenance mode when needed, advance notification to users when planning maintenance">Maintenance Mode (وضع الصيانة): وضع صيانة رسمي، رسالة موحدة للمستخدمين، إمكانية تفعيل وضع الصيانة بسهولة عند الحاجة، إشعار مسبق للمستخدمين عند التخطيط للصيانة</li>
+            </ul>
+
+            <h3 data-lang-ar="سياسة الخصوصية وشروط الاستخدام" data-lang-en="Privacy Policy and Terms of Use">سياسة الخصوصية وشروط الاستخدام</h3>
+            <ul>
+                <li data-lang-ar="فتح الحساب يعني الموافقة التلقائية على الشروط" data-lang-en="Opening an account means automatic agreement to the terms">فتح الحساب يعني الموافقة التلقائية على الشروط</li>
+                <li data-lang-ar="شرح حماية البيانات، حقوق المستخدم، وحقوق المنصة" data-lang-en="Explanation of data protection, user rights, and platform rights">شرح حماية البيانات، حقوق المستخدم، وحقوق المنصة</li>
+                <li data-lang-ar="ذكر واضح لسياسة جمع البيانات والـ IP" data-lang-en="Clear mention of data collection and IP policy">ذكر واضح لسياسة جمع البيانات والـ IP</li>
+                <li data-lang-ar="توضيح حقوق نشر المحتوى وحقوق المشايخ والمؤلفين" data-lang-en="Clarification of content publishing rights and rights of scholars and authors">توضيح حقوق نشر المحتوى وحقوق المشايخ والمؤلفين</li>
+                <li data-lang-ar="الموافقة الصريحة: موافقة صريحة على جمع البيانات (خاصة للمستخدمين في الاتحاد الأوروبي)" data-lang-en="Explicit Consent: Explicit consent for data collection (especially for EU users)">الموافقة الصريحة: موافقة صريحة على جمع البيانات (خاصة للمستخدمين في الاتحاد الأوروبي)</li>
+                <li data-lang-ar="حق حذف البيانات (Right to be Forgotten): إجراءات واضحة لحذف بيانات المستخدم عند الطلب - حذف متسلسل (Cascading): حذف جميع البيانات المرتبطة - النسخ الاحتياطية: البيانات في النسخ الاحتياطية تُحذف عند انتهاء دورة الاحتفاظ - مهلة التنفيذ: مثلاً 30 يوم لتنفيذ الطلب - استثناءات قانونية: استثناء فقط للبيانات المطلوبة قانونيًا (إن وُجدت)" data-lang-en="Right to Data Deletion (Right to be Forgotten): Clear procedures for deleting user data upon request - Cascading Deletion: Delete all related data - Backup Data: Data in backups is deleted when retention cycle ends - Processing Time: e.g., 30 days to process the request - Legal Exceptions: Exception only for legally required data (if any)">حق حذف البيانات (Right to be Forgotten): إجراءات واضحة لحذف بيانات المستخدم عند الطلب - حذف متسلسل (Cascading): حذف جميع البيانات المرتبطة - النسخ الاحتياطية: البيانات في النسخ الاحتياطية تُحذف عند انتهاء دورة الاحتفاظ - مهلة التنفيذ: مثلاً 30 يوم لتنفيذ الطلب - استثناءات قانونية: استثناء فقط للبيانات المطلوبة قانونيًا (إن وُجدت)</li>
+                <li data-lang-ar="حق تصدير البيانات (Data Portability): المستخدم يمكنه طلب نسخة من بياناته بصيغة قابلة للتحميل" data-lang-en="Right to Data Export (Data Portability): Users can request a copy of their data in downloadable format">حق تصدير البيانات (Data Portability): المستخدم يمكنه طلب نسخة من بياناته بصيغة قابلة للتحميل</li>
+            </ul>
+
+            <h3 data-lang-ar="التحليلات" data-lang-en="Analytics">التحليلات</h3>
+            <ul>
+                <li data-lang-ar="متابعة استخدام المنصة وإحصائيات الاستخدام" data-lang-en="Tracking platform usage and usage statistics">متابعة استخدام المنصة وإحصائيات الاستخدام</li>
+                <li data-lang-ar="أكثر الأقسام زيارة وتفاعل المستخدمين" data-lang-en="Most visited sections and user engagement">أكثر الأقسام زيارة وتفاعل المستخدمين</li>
+                <li data-lang-ar="نشاط الحملات ومعدل التفاعل" data-lang-en="Campaign activity and engagement rate">نشاط الحملات ومعدل التفاعل</li>
+                <li data-lang-ar="تقارير مفصلة للمسؤولين في admin.marje3.app" data-lang-en="Detailed reports for administrators in admin.marje3.app">تقارير مفصلة للمسؤولين في <code>admin.marje3.app</code></li>
+            </ul>
+
+            <h4 data-lang-ar="جمع بيانات الزوار والإحصاءات" data-lang-en="Visitor Data Collection and Statistics">جمع بيانات الزوار والإحصاءات</h4>
+            <ul>
+                <li data-lang-ar="نوع الجهاز (كمبيوتر، iOS، Android، Mac)" data-lang-en="Device type (computer, iOS, Android, Mac)">نوع الجهاز (كمبيوتر، iOS، Android، Mac)</li>
+                <li data-lang-ar="الدولة/المنطقة" data-lang-en="Country/Region">الدولة/المنطقة</li>
+                <li data-lang-ar="المتصفح" data-lang-en="Browser">المتصفح</li>
+                <li data-lang-ar="جميع الزوار يتم جمع IP لهم لأغراض إحصائية، بدون ربط بحسابهم، مجرد أرقام للإحصاءات" data-lang-en="All visitors' IP addresses are collected for statistical purposes only, without linking to their accounts, just numbers for statistics">جميع الزوار يتم جمع IP لهم لأغراض إحصائية، بدون ربط بحسابهم، مجرد أرقام للإحصاءات</li>
+                <li data-lang-ar="البيانات غير مشتركة مع أي طرف ثالث ولا يتم مراجعتها بشريًا" data-lang-en="Data is not shared with any third party and is not reviewed by humans">البيانات غير مشتركة مع أي طرف ثالث ولا يتم مراجعتها بشريًا</li>
+                <li data-lang-ar="الموافقة على جمع IP: موافقة صريحة على جمع IP (خاصة للمستخدمين في الاتحاد الأوروبي)" data-lang-en="IP Collection Consent: Explicit consent for IP collection (especially for EU users)">الموافقة على جمع IP: موافقة صريحة على جمع IP (خاصة للمستخدمين في الاتحاد الأوروبي)</li>
+                <li data-lang-ar="معالجة IP للزوار: يُخزن نصًّا لمدة 90 يوم، بعدها يُ anonymize، يُحذف نهائيًا بعد سنة" data-lang-en="IP Handling for Visitors: Stored as text for 90 days, then anonymized, permanently deleted after 1 year">معالجة IP للزوار: يُخزن نصًّا لمدة 90 يوم، بعدها يُ anonymize، يُحذف نهائيًا بعد سنة</li>
+            </ul>
+
+            <h4 data-lang-ar="تحليلات الحملات بشكل متقدم" data-lang-en="Advanced Campaign Analytics">تحليلات الحملات بشكل متقدم</h4>
+            <ul>
+                <li data-lang-ar="تحويل المستخدم: تتبع من شاهد الحملة → تفاعل → مشاركة أو إكمال هدف" data-lang-en="Conversion Tracking: Track from viewing campaign → interaction → sharing or completing goal">تحويل المستخدم: تتبع من شاهد الحملة → تفاعل → مشاركة أو إكمال هدف</li>
+                <li data-lang-ar="معدل المشاركة: عدد المشاركات، التعليقات، الإعجابات لكل حملة أو محتوى" data-lang-en="Engagement Rate: Number of shares, comments, likes for each campaign or content">معدل المشاركة: عدد المشاركات، التعليقات، الإعجابات لكل حملة أو محتوى</li>
+                <li data-lang-ar="تقارير حسب الوقت والموقع: معرفة أيام الذروة، المناطق الأكثر نشاطًا" data-lang-en="Time and Location Reports: Know peak days, most active regions">تقارير حسب الوقت والموقع: معرفة أيام الذروة، المناطق الأكثر نشاطًا</li>
+                <li data-lang-ar="تحليلات سلوك المستخدم: الصفحات التي وصل لها بعد النقر على رابط الحملة، مدة البقاء، مسار التصفح" data-lang-en="User Behavior Analytics: Pages reached after clicking campaign link, time spent, browsing path">تحليلات سلوك المستخدم: الصفحات التي وصل لها بعد النقر على رابط الحملة، مدة البقاء، مسار التصفح</li>
+                <li data-lang-ar="تصدير البيانات: إمكانية تصدير CSV/Excel للتحاليل والتقارير" data-lang-en="Data Export: Ability to export CSV/Excel for analysis and reports">تصدير البيانات: إمكانية تصدير CSV/Excel للتحاليل والتقارير</li>
+                <li data-lang-ar="Dashboard مركزي: عرض كل هذه المؤشرات بشكل رسومي في admin.marje3.app" data-lang-en="Central Dashboard: Display all these metrics graphically in admin.marje3.app">Dashboard مركزي: عرض كل هذه المؤشرات بشكل رسومي في <code>admin.marje3.app</code></li>
+            </ul>
+
+            <h4 data-lang-ar="IP للمسجلين فقط" data-lang-en="IP for Registered Users Only">IP للمسجلين فقط</h4>
+            <ul>
+                <li data-lang-ar="تسجيل الـ IP وربطه بـ user_id عند تسجيل الدخول" data-lang-en="IP registration and linking to user_id upon login">تسجيل الـ IP وربطه بـ <code>user_id</code> عند تسجيل الدخول</li>
+                <li data-lang-ar="الغرض: الأمان، منع الحسابات الوهمية، وتحسين الإحصاءات الداخلية" data-lang-en="Purpose: Security, preventing fake accounts, and improving internal statistics">الغرض: الأمان، منع الحسابات الوهمية، وتحسين الإحصاءات الداخلية</li>
+                <li data-lang-ar="ذكر واضح في سياسة الخصوصية" data-lang-en="Clear mention in privacy policy">ذكر واضح في سياسة الخصوصية</li>
+                <li data-lang-ar="الموافقة الصريحة: موافقة صريحة على ربط IP بـ user_id" data-lang-en="Explicit Consent: Explicit consent for linking IP to user_id">الموافقة الصريحة: موافقة صريحة على ربط IP بـ user_id</li>
+                <li data-lang-ar="معالجة IP: يُخزن نصًّا لمدة 90 يوم، بعدها يُ anonymize، يُحذف نهائيًا بعد سنة، مذكور صراحة في سياسة الخصوصية" data-lang-en="IP Handling: Stored as text for 90 days, then anonymized, permanently deleted after 1 year, explicitly mentioned in privacy policy">معالجة IP: يُخزن نصًّا لمدة 90 يوم، بعدها يُ anonymize، يُحذف نهائيًا بعد سنة، مذكور صراحة في سياسة الخصوصية</li>
+            </ul>
+
+            <h3 data-lang-ar="مراجعة المحتوى" data-lang-en="Content Review Workflow">مراجعة المحتوى</h3>
+            <ul>
+                <li data-lang-ar="نظام لتتبع مراحل مراجعة المقالات، الفتاوى، الكتب قبل النشر" data-lang-en="System to track review stages of articles, fatwas, books before publication">نظام لتتبع مراحل مراجعة المقالات، الفتاوى، الكتب قبل النشر</li>
+                <li data-lang-ar="حالات المحتوى: مسودة، قيد المراجعة، معتمد، منشور" data-lang-en="Content states: draft, under review, approved, published">حالات المحتوى: مسودة، قيد المراجعة، معتمد، منشور</li>
+                <li data-lang-ar="آلية الموافقة النهائية للفتاوى: تحديد خطوات واضحة لمنع أي نشر قبل أبروفال من الأدمن بعد مراجعة المشايخ" data-lang-en="Final Approval Mechanism for Fatwas: Clear steps to prevent any publication before admin approval after scholars' review">آلية الموافقة النهائية للفتاوى: تحديد خطوات واضحة لمنع أي نشر قبل أبروفال من الأدمن بعد مراجعة المشايخ</li>
+                <li data-lang-ar="تحديد المسؤوليات: لكل مرحلة مراجعة، من كتابة → مراجعة → تعديل → اعتماد، يكون واضح من المسؤول عن كل خطوة" data-lang-en="Responsibility Assignment: For each review stage, from writing → review → modification → approval, it's clear who is responsible for each step">تحديد المسؤوليات: لكل مرحلة مراجعة، من كتابة → مراجعة → تعديل → اعتماد، يكون واضح من المسؤول عن كل خطوة</li>
+                <li data-lang-ar="سجل التعديلات على الفتاوى: حفظ نسخة من كل تعديل حتى لو تم رفضه أو تعديل لاحق" data-lang-en="Fatwa Change Log: Save a copy of every modification even if it was rejected or later modified">سجل التعديلات على الفتاوى: حفظ نسخة من كل تعديل حتى لو تم رفضه أو تعديل لاحق</li>
+                <li data-lang-ar="سياسة النشر والحقوق: توضيح حقوق نشر المحتوى وحقوق المشايخ والمؤلفين" data-lang-en="Publishing and Rights Policy: Clarify content publishing rights and rights of scholars and authors">سياسة النشر والحقوق: توضيح حقوق نشر المحتوى وحقوق المشايخ والمؤلفين</li>
+                <li data-lang-ar="تجربة المستخدم النهائي: المستخدم يشاهد المحتوى المعتمد فقط بدون أي محتوى قيد المراجعة" data-lang-en="End-User Experience: Users only see approved content without any content under review">تجربة المستخدم النهائي: المستخدم يشاهد المحتوى المعتمد فقط بدون أي محتوى قيد المراجعة</li>
+                <li data-lang-ar="حل الخلافات بين المراجعين: آلية لحل الخلافات عندما يختلف مراجع مع آخر" data-lang-en="Reviewer Disagreement Resolution: Mechanism to resolve disagreements when one reviewer disagrees with another">حل الخلافات بين المراجعين: آلية لحل الخلافات عندما يختلف مراجع مع آخر</li>
+                <li data-lang-ar="نظام الإصدارات: نظام إصدارات كامل للمحتوى مع إمكانية الرجوع للإصدارات السابقة" data-lang-en="Versioning System: Full versioning system for content with ability to rollback to previous versions">نظام الإصدارات: نظام إصدارات كامل للمحتوى مع إمكانية الرجوع للإصدارات السابقة</li>
+                <li data-lang-ar="Legal Disclaimer للفتاوى (إخلاء مسؤولية قانوني للفتاوى): الفتاوى منشورة من مفتين معتمدين ومراجَعة من مشايخ مختصين، الفتوى قد تختلف باختلاف الزمان والمكان والحال، المنصة مسؤولة عن صحة النقل والمراجعة، لا عن التطبيق الفردي الخاطئ، إخلاء مسؤولية واضح في كل فتوى منشورة" data-lang-en="Legal Disclaimer for Fatwas: Fatwas are published by certified muftis and reviewed by specialized scholars, fatwa may vary according to time, place, and circumstances, platform is responsible for accuracy of transmission and review, not for individual incorrect application, clear disclaimer on every published fatwa">Legal Disclaimer للفتاوى (إخلاء مسؤولية قانوني للفتاوى): الفتاوى منشورة من مفتين معتمدين ومراجَعة من مشايخ مختصين، الفتوى قد تختلف باختلاف الزمان والمكان والحال، المنصة مسؤولة عن صحة النقل والمراجعة، لا عن التطبيق الفردي الخاطئ، إخلاء مسؤولية واضح في كل فتوى منشورة</li>
+                <li data-lang-ar="Abuse Reporting (الإبلاغ عن الإساءة): زر إبلاغ عن محتوى أو إساءة، Workflow واضح للتعامل مع البلاغات، نظام لتتبع ومعالجة البلاغات بشكل منظم، إشعارات للمسؤولين عند استلام بلاغ جديد، آلية لمراجعة البلاغات واتخاذ الإجراءات المناسبة" data-lang-en="Abuse Reporting: Report button for content or abuse, clear workflow for handling reports, system to track and process reports in an organized manner, notifications to administrators when new reports are received, mechanism to review reports and take appropriate actions">Abuse Reporting (الإبلاغ عن الإساءة): زر إبلاغ عن محتوى أو إساءة، Workflow واضح للتعامل مع البلاغات، نظام لتتبع ومعالجة البلاغات بشكل منظم، إشعارات للمسؤولين عند استلام بلاغ جديد، آلية لمراجعة البلاغات واتخاذ الإجراءات المناسبة</li>
+            </ul>
+
+            <h3 data-lang-ar="البنية التحتية والاستضافة (Infrastructure & Hosting)" data-lang-en="Infrastructure & Hosting">البنية التحتية والاستضافة (Infrastructure & Hosting)</h3>
+            <ul>
+                <li data-lang-ar="استضافة سحابية بالكامل: يعتمد مشروع مرجع على استضافة سحابية بالكامل بدون أي خوادم محلية - جميع البيئات (الموقع، الـ API، السب دومينز) تعمل على بنية سحابية موثوقة وقابلة للتوسع - لا يتم تشغيل أي جزء من النظام من أجهزة شخصية أو شبكات منزلية" data-lang-en="Fully Cloud-Based Hosting: Marje3 project relies entirely on cloud hosting without any local servers - All environments (website, API, subdomains) run on reliable and scalable cloud infrastructure - No part of the system runs on personal devices or home networks">استضافة سحابية بالكامل: يعتمد مشروع مرجع على استضافة سحابية بالكامل بدون أي خوادم محلية - جميع البيئات (الموقع، الـ API، السب دومينز) تعمل على بنية سحابية موثوقة وقابلة للتوسع - لا يتم تشغيل أي جزء من النظام من أجهزة شخصية أو شبكات منزلية</li>
+                <li data-lang-ar="إدارة الكود والنشر: الكود المصدري محفوظ في مستودع مركزي واحد (GitHub) - المستودع هو المصدر الوحيد للحقيقة (Single Source of Truth) - أي تحديث على الكود يتم نشره تلقائيًا على المنصة بدون تدخل يدوي مباشر بالخوادم" data-lang-en="Code Management & Deployment: Source code stored in a single central repository (GitHub) - Repository is the single source of truth - Any code update is automatically deployed to the platform without direct manual server intervention">إدارة الكود والنشر: الكود المصدري محفوظ في مستودع مركزي واحد (GitHub) - المستودع هو المصدر الوحيد للحقيقة (Single Source of Truth) - أي تحديث على الكود يتم نشره تلقائيًا على المنصة بدون تدخل يدوي مباشر بالخوادم</li>
+                <li data-lang-ar="الأداء وتوزيع المحتوى (CDN): استخدام شبكة توزيع محتوى (Cloudflare CDN) لتسريع تحميل الصفحات والملفات - يتم تقديم المحتوى للمستخدم من أقرب نقطة جغرافية له - CDN تقلل الضغط على الخوادم الأساسية وتحسّن الأداء في جميع الدول - CDN مسؤولة عن: تسريع الصور والملفات الثابتة، التخزين المؤقت (Caching)، الحماية الأساسية من الهجمات الشائعة" data-lang-en="Performance & Content Delivery (CDN): Use content delivery network (Cloudflare CDN) to speed up page and file loading - Content is delivered to users from the nearest geographic point - CDN reduces load on main servers and improves performance in all countries - CDN responsible for: speeding up images and static files, caching, basic protection from common attacks">الأداء وتوزيع المحتوى (CDN): استخدام شبكة توزيع محتوى (Cloudflare CDN) لتسريع تحميل الصفحات والملفات - يتم تقديم المحتوى للمستخدم من أقرب نقطة جغرافية له - CDN تقلل الضغط على الخوادم الأساسية وتحسّن الأداء في جميع الدول - CDN مسؤولة عن: تسريع الصور والملفات الثابتة، التخزين المؤقت (Caching)، الحماية الأساسية من الهجمات الشائعة</li>
+                <li data-lang-ar="الاعتمادية والاستمرارية: النظام مصمم بدون نقطة فشل واحدة (No Single Point of Failure) - في حال تعطل جزء من الخدمة، لا يتأثر المستخدم النهائي بشكل مباشر - البنية تدعم التوسع الأفقي حسب عدد المستخدمين والزيارات" data-lang-en="Reliability & Continuity: System designed with no single point of failure - If part of the service fails, end users are not directly affected - Architecture supports horizontal scaling based on number of users and visits">الاعتمادية والاستمرارية: النظام مصمم بدون نقطة فشل واحدة (No Single Point of Failure) - في حال تعطل جزء من الخدمة، لا يتأثر المستخدم النهائي بشكل مباشر - البنية تدعم التوسع الأفقي حسب عدد المستخدمين والزيارات</li>
+                <li data-lang-ar="الأمان: لا يوجد وصول مباشر للخوادم من المستخدمين أو المطورين - جميع الطلبات تمر عبر طبقات حماية وشبكة CDN - البنية تقلل المخاطر المرتبطة بسرعة الإنترنت أو الموقع الجغرافي للمشغّل" data-lang-en="Security: No direct server access from users or developers - All requests go through protection layers and CDN network - Architecture reduces risks related to internet speed or geographic location of operator">الأمان: لا يوجد وصول مباشر للخوادم من المستخدمين أو المطورين - جميع الطلبات تمر عبر طبقات حماية وشبكة CDN - البنية تقلل المخاطر المرتبطة بسرعة الإنترنت أو الموقع الجغرافي للمشغّل</li>
+                <li data-lang-ar="مبدأ التصميم: سهولة التشغيل (التركيز على تطوير المحتوى والميزات، لا إدارة الخوادم) - الاحترافية (نفس بنية المشاريع العالمية) - الاستدامة (قابلية النمو بدون إعادة بناء جذرية مستقبلًا)" data-lang-en="Design Principle: Ease of Operation (Focus on content and feature development, not server management) - Professionalism (Same architecture as global projects) - Sustainability (Ability to grow without radical reconstruction in the future)">مبدأ التصميم: سهولة التشغيل (التركيز على تطوير المحتوى والميزات، لا إدارة الخوادم) - الاحترافية (نفس بنية المشاريع العالمية) - الاستدامة (قابلية النمو بدون إعادة بناء جذرية مستقبلًا)</li>
+            </ul>
+        </section>
+
+        <!-- Subdomains Section -->
+        <section id="subdomains" class="section">
+            <h2 data-lang-ar="أقسام المشروع حسب Subdomains والـ Paths" data-lang-en="Project Sections by Subdomains and Paths">أقسام المشروع حسب Subdomains والـ Paths</h2>
+            
+            <div class="subdomain-card">
+                <h3>🌐 marje3.app – <span data-lang-ar="الموقع الرئيسي" data-lang-en="Main Website">الموقع الرئيسي</span></h3>
+                <p data-lang-ar="المسارات: /fatwa, /questions, /articles, /channels, /about" data-lang-en="Routes: /fatwa, /questions, /articles, /channels, /about">المسارات: <code>/fatwa</code>, <code>/questions</code>, <code>/articles</code>, <code>/channels</code>, <code>/about</code></p>
+            </div>
+
+            <div class="subdomain-card">
+                <h3>🏠 home.marje3.app – <span data-lang-ar="البيت (واجهة المستخدم الخاصة)" data-lang-en="Home (User's Personal Interface)">البيت (واجهة المستخدم الخاصة)</span></h3>
+                <p data-lang-ar="المسارات: /quran, /tasbeeh, /adhkar, /protection" data-lang-en="Routes: /quran, /tasbeeh, /adhkar, /protection">المسارات: <code>/quran</code>, <code>/tasbeeh</code>, <code>/adhkar</code>, <code>/protection</code></p>
+            </div>
+
+            <div class="subdomain-card">
+                <h3>🎯 7amlat.marje3.app – <span data-lang-ar="الحملات" data-lang-en="Campaigns">الحملات</span></h3>
+                <p data-lang-ar="المسارات: /campaign/:id" data-lang-en="Routes: /campaign/:id">المسارات: <code>/campaign/:id</code></p>
+            </div>
+
+            <div class="subdomain-card">
+                <h3>📝 kalemat.marje3.app – <span data-lang-ar="كلمات القصائد والمدائح" data-lang-en="Lyrics of Poems and Madaih">كلمات القصائد والمدائح</span></h3>
+                <p data-lang-ar="المسارات: /poem/:id" data-lang-en="Routes: /poem/:id">المسارات: <code>/poem/:id</code></p>
+            </div>
+
+            <div class="subdomain-card">
+                <h3>📚 library.marje3.app – <span data-lang-ar="المكتبة الرقمية" data-lang-en="Digital Library">المكتبة الرقمية</span></h3>
+                <p data-lang-ar="المسارات: /book/:id, /search" data-lang-en="Routes: /book/:id, /search">المسارات: <code>/book/:id</code>, <code>/search</code></p>
+            </div>
+
+            <div class="subdomain-card">
+                <h3>🔐 admin.marje3.app, auth.marje3.app, api.marje3.app</h3>
+                <p data-lang-ar="صفحات إدارية: إدارة المستخدمين، إرسال الإشعارات، إدارة المحتوى، التحليلات، سجل النشاطات" data-lang-en="Administrative pages: User management, notification sending, content management, analytics, activity logs">صفحات إدارية: إدارة المستخدمين، إرسال الإشعارات، إدارة المحتوى، التحليلات، سجل النشاطات</p>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summary" class="section">
+            <h2 data-lang-ar="الخلاصة" data-lang-en="Summary">الخلاصة</h2>
+            
+            <p data-lang-ar="مشروع مرجع هو منصة شاملة وموثوقة لأهل السنة والجماعة، تهدف إلى تقديم المحتوى العلمي والديني المراجع من علماء ومشايخ أهل السنة والجماعة في العالم الإسلامي." data-lang-en="Marje3 is a comprehensive and trusted platform for Ahl al-Sunnah wa al-Jama'ah, aiming to provide scientific and religious content reviewed by scholars and sheikhs of Ahl al-Sunnah wa al-Jama'ah worldwide.">مشروع مرجع هو منصة شاملة وموثوقة لأهل السنة والجماعة، تهدف إلى تقديم المحتوى العلمي والديني المراجع من علماء ومشايخ أهل السنة والجماعة في العالم الإسلامي.</p>
+
+            <h3 data-lang-ar="يوفر المشروع تجربة متكاملة للمستخدمين تشمل:" data-lang-en="The project provides users with an integrated experience including:">يوفر المشروع تجربة متكاملة للمستخدمين تشمل:</h3>
+            
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong data-lang-ar="الفتاوى والمقالات والأسئلة" data-lang-en="Fatwas, Articles, and Questions">الفتاوى والمقالات والأسئلة</strong>
+                    <span data-lang-ar="محتوى علمي موثوق ومراجع" data-lang-en="Trusted and reviewed scientific content">محتوى علمي موثوق ومراجع</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="المكتبة الرقمية" data-lang-en="Digital Library">المكتبة الرقمية</strong>
+                    <span data-lang-ar="كتب ومصادر علمية شاملة" data-lang-en="Comprehensive books and scientific sources">كتب ومصادر علمية شاملة</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="الحملات الدينية" data-lang-en="Religious Campaigns">الحملات الدينية</strong>
+                    <span data-lang-ar="مشاركة مجتمعية في الأعمال الخيرية والدعوية" data-lang-en="Community participation in charitable and da'wah works">مشاركة مجتمعية في الأعمال الخيرية والدعوية</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="مساحة العبادة الشخصية" data-lang-en="Personal Worship Space">مساحة العبادة الشخصية</strong>
+                    <span data-lang-ar="لكل مستخدم للأذكار والأوراد والتحصينات" data-lang-en="For each user for adhkar, awrad, and protective supplications">لكل مستخدم للأذكار والأوراد والتحصينات</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="تعدد اللغات" data-lang-en="Multi-language Support">تعدد اللغات</strong>
+                    <span data-lang-ar="واجهة للتبديل بين العربية والإنجليزية" data-lang-en="Interface to switch between Arabic and English">واجهة للتبديل بين العربية والإنجليزية</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="تطبيق متعدد المنصات" data-lang-en="Multi-platform Application">تطبيق متعدد المنصات</strong>
+                    <span data-lang-ar="PWA للويب + iOS، Android، Windows" data-lang-en="PWA for web + iOS, Android, Windows">PWA للويب + iOS، Android، Windows</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="العمل دون إنترنت" data-lang-en="Offline Functionality">العمل دون إنترنت</strong>
+                    <span data-lang-ar="إمكانية تنزيل كل البيانات للاستخدام بدون اتصال" data-lang-en="Ability to download all data for offline use">إمكانية تنزيل كل البيانات للاستخدام بدون اتصال</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="نظام الإشعارات" data-lang-en="Notification System">نظام الإشعارات</strong>
+                    <span data-lang-ar="نظام كامل يدعم نصوص وصور وروابط" data-lang-en="Full system supporting text, images, and links">نظام كامل يدعم نصوص وصور وروابط</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="إدارة المستخدمين" data-lang-en="User Management">إدارة المستخدمين</strong>
+                    <span data-lang-ar="نظام أدوار وصلاحيات متقدم" data-lang-en="Advanced role and permission system">نظام أدوار وصلاحيات متقدم</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="الأمان" data-lang-en="Security">الأمان</strong>
+                    <span data-lang-ar="تشفير البيانات وحماية API" data-lang-en="Data encryption and API protection">تشفير البيانات وحماية API</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="التحليلات" data-lang-en="Analytics">التحليلات</strong>
+                    <span data-lang-ar="متابعة استخدام المنصة ونشاط الحملات" data-lang-en="Tracking platform usage and campaign activity">متابعة استخدام المنصة ونشاط الحملات</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="سهولة الاستخدام" data-lang-en="Accessibility">سهولة الاستخدام</strong>
+                    <span data-lang-ar="دعم قارئ الشاشة وتكبير الخط مع ARIA وWCAG 2.1" data-lang-en="Screen reader support and font size adjustment with ARIA and WCAG 2.1">دعم قارئ الشاشة وتكبير الخط مع ARIA وWCAG 2.1</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="تحسين محركات البحث" data-lang-en="SEO">تحسين محركات البحث</strong>
+                    <span data-lang-ar="عناوين فريدة، Meta Tags، Sitemap (XML)، robots.txt، Structured Data (يتم إضافتها بعد أن يكون الموقع يعمل 100%)" data-lang-en="Unique titles, Meta Tags, Sitemap (XML), robots.txt, Structured Data (to be added after site is 100% working)">عناوين فريدة، Meta Tags، Sitemap (XML)، robots.txt، Structured Data (يتم إضافتها بعد أن يكون الموقع يعمل 100%)</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="التسويق ووسائل التواصل" data-lang-en="Marketing & Social Media">التسويق ووسائل التواصل</strong>
+                    <span data-lang-ar="أزرار مشاركة على فيسبوك، تويتر، واتساب، لينكدإن" data-lang-en="Share buttons on Facebook, Twitter, WhatsApp, LinkedIn">أزرار مشاركة على فيسبوك، تويتر، واتساب، لينكدإن</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="تحليلات الحملات المتقدمة" data-lang-en="Advanced Campaign Analytics">تحليلات الحملات المتقدمة</strong>
+                    <span data-lang-ar="تتبع التحويل، معدل المشاركة، تحليلات سلوك المستخدم" data-lang-en="Conversion tracking, engagement rate, user behavior analytics">تتبع التحويل، معدل المشاركة، تحليلات سلوك المستخدم</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="المراقبة والتنبيهات" data-lang-en="Monitoring & Alerting">المراقبة والتنبيهات</strong>
+                    <span data-lang-ar="Dashboard مركزي، تنبيهات فورية، مراقبة uptime و latency" data-lang-en="Central dashboard, real-time alerts, uptime and latency monitoring">Dashboard مركزي، تنبيهات فورية، مراقبة uptime و latency</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="اختبارات الأمان" data-lang-en="Security Testing">اختبارات الأمان</strong>
+                    <span data-lang-ar="Penetration Testing، Vulnerability Scanning، Security Audits" data-lang-en="Penetration Testing, Vulnerability Scanning, Security Audits">Penetration Testing، Vulnerability Scanning، Security Audits</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="CI/CD والنشر" data-lang-en="CI/CD & Deployment">CI/CD والنشر</strong>
+                    <span data-lang-ar="Pipeline آلي، اختبارات تلقائية، Rollback، Canary Deployment" data-lang-en="Automated pipeline, automated tests, rollback, Canary Deployment">Pipeline آلي، اختبارات تلقائية، Rollback، Canary Deployment</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="البنية التحتية والاستضافة" data-lang-en="Infrastructure & Hosting">البنية التحتية والاستضافة</strong>
+                    <span data-lang-ar="استضافة سحابية بالكامل (AWS & Cloudflare & GitHub)، CDN، No Single Point of Failure" data-lang-en="Fully cloud-based hosting (AWS & Cloudflare & GitHub), CDN, No Single Point of Failure">استضافة سحابية بالكامل (AWS & Cloudflare & GitHub)، CDN، No Single Point of Failure</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="أمان رفع الملفات" data-lang-en="File Upload Security">أمان رفع الملفات</strong>
+                    <span data-lang-ar="Whitelist، حد الحجم، فحص تلقائي، تخزين معزول" data-lang-en="Whitelist, size limits, automatic scanning, isolated storage">Whitelist، حد الحجم، فحص تلقائي، تخزين معزول</span>
+                </div>
+                <div class="summary-item">
+                    <strong data-lang-ar="حقوق المستخدم" data-lang-en="User Rights">حقوق المستخدم</strong>
+                    <span data-lang-ar="حق حذف البيانات (Cascading)، حق تصدير البيانات" data-lang-en="Right to data deletion (Cascading), Right to data export">حق حذف البيانات (Cascading)، حق تصدير البيانات</span>
+                </div>
+            </div>
+
+            <h3 data-lang-ar="الهدف" data-lang-en="Objective">الهدف</h3>
+            <p data-lang-ar="مرجع متكامل يجمع بين: العلم (المحتوى العلمي الموثوق)، التطبيق (أدوات عملية للعبادة اليومية)، الدعوة (نشر الخير والمعرفة)، والمشاركة المجتمعية (الحملات والمبادرات). مع واجهة بسيطة وسهلة الاستخدام لجميع الأعمار." data-lang-en="An integrated reference that combines: Knowledge (Trusted scientific content), Application (Practical tools for daily worship), Da'wah (Spreading goodness and knowledge), and Community Participation (Campaigns and initiatives). With a simple and easy-to-use interface for all ages.">مرجع متكامل يجمع بين: <strong>العلم</strong> (المحتوى العلمي الموثوق)، <strong>التطبيق</strong> (أدوات عملية للعبادة اليومية)، <strong>الدعوة</strong> (نشر الخير والمعرفة)، و<strong>المشاركة المجتمعية</strong> (الحملات والمبادرات). مع واجهة بسيطة وسهلة الاستخدام لجميع الأعمار.</p>
+
+            <h3 data-lang-ar="التصميم والهيكلية" data-lang-en="Design and Structure">التصميم والهيكلية</h3>
+            <ul>
+                <li data-lang-ar="هيكلية الهيد والفوتر: تصميم احترافي ومتسق عبر جميع الصفحات" data-lang-en="Header and Footer Structure: Professional and consistent design across all pages">هيكلية الهيد والفوتر: تصميم احترافي ومتسق عبر جميع الصفحات</li>
+                <li data-lang-ar="ترتيب المحتوى: تنظيم واضح ومنطقي للمحتوى" data-lang-en="Content Organization: Clear and logical content organization">ترتيب المحتوى: تنظيم واضح ومنطقي للمحتوى</li>
+                <li data-lang-ar="تجربة المستخدم: واجهة سهلة الاستخدام وسريعة الاستجابة" data-lang-en="User Experience: Easy-to-use and responsive interface">تجربة المستخدم: واجهة سهلة الاستخدام وسريعة الاستجابة</li>
+                <li data-lang-ar="سهولة التنقل: تنقل سلس بين الصفحات والأقسام" data-lang-en="Easy Navigation: Smooth navigation between pages and sections">سهولة التنقل: تنقل سلس بين الصفحات والأقسام</li>
+                <li data-lang-ar="التصميم الاحترافي: التأكيد على جودة التصميم والهيكلية في جميع أنحاء المنصة" data-lang-en="Professional Design: Emphasis on design quality and structure throughout the platform">التصميم الاحترافي: التأكيد على جودة التصميم والهيكلية في جميع أنحاء المنصة</li>
+            </ul>
+
+            <h3 data-lang-ar="CI/CD والنشر" data-lang-en="CI/CD & Deployment">CI/CD والنشر</h3>
+            <ul>
+                <li data-lang-ar="CI/CD: كل تحديث للكود يمر عبر Pipeline آلي: Build → Test → Lint → Deploy" data-lang-en="CI/CD: Every code update goes through automated Pipeline: Build → Test → Lint → Deploy">CI/CD: كل تحديث للكود يمر عبر Pipeline آلي: Build → Test → Lint → Deploy</li>
+                <li data-lang-ar="اختبارات تلقائية: Unit + Integration + End-to-End قبل الدمج" data-lang-en="Automated Tests: Unit + Integration + End-to-End before merging">اختبارات تلقائية: Unit + Integration + End-to-End قبل الدمج</li>
+                <li data-lang-ar="إمكانية Rollback: العودة لإصدار سابق إذا حصل خطأ بعد النشر" data-lang-en="Rollback Capability: Return to previous version if error occurs after deployment">إمكانية Rollback: العودة لإصدار سابق إذا حصل خطأ بعد النشر</li>
+                <li data-lang-ar="فصل بيئة Staging عن Production لاختبار التحديثات قبل النشر النهائي" data-lang-en="Separate Staging environment from Production to test updates before final deployment">فصل بيئة Staging عن Production لاختبار التحديثات قبل النشر النهائي</li>
+                <li data-lang-ar="نشر تدريجي (Canary Deployment) لتقليل المخاطر" data-lang-en="Gradual deployment (Canary Deployment) to reduce risks">نشر تدريجي (Canary Deployment) لتقليل المخاطر</li>
+                <li data-lang-ar="إدارة الإصدارات: Versioning لكل تحديث لتسهيل الرجوع عند الحاجة" data-lang-en="Version Management: Versioning for each update to facilitate rollback when needed">إدارة الإصدارات: Versioning لكل تحديث لتسهيل الرجوع عند الحاجة</li>
+                <li data-lang-ar="Feature Flags (أعلام الميزات): إمكانية تفعيل أو تعطيل أي ميزة دون الحاجة لنشر تحديث جديد، تطبيق الإطلاق التدريجي (Rollout) للمميزات الحساسة، لتفعيل/تعطيل أي ميزة عند ظهور أي هجوم، إدارة الميزات الجديدة بشكل آمن ومرن، إمكانية إرجاع الميزات بسرعة في حالة المشاكل" data-lang-en="Feature Flags: Ability to enable or disable any feature without deploying a new update, apply gradual rollout for sensitive features, to enable/disable any feature when an attack appears, manage new features safely and flexibly, ability to quickly revert features in case of issues">Feature Flags (أعلام الميزات): إمكانية تفعيل أو تعطيل أي ميزة دون الحاجة لنشر تحديث جديد، تطبيق الإطلاق التدريجي (Rollout) للمميزات الحساسة، لتفعيل/تعطيل أي ميزة عند ظهور أي هجوم، إدارة الميزات الجديدة بشكل آمن ومرن، إمكانية إرجاع الميزات بسرعة في حالة المشاكل</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p data-lang-ar="مرجع (Marje3) - Project Documentation" data-lang-en="Marje3 - Project Documentation">مرجع (Marje3) - Project Documentation</p>
+        <p data-lang-ar="منصة شاملة وموثوقة لأهل السنة والجماعة" data-lang-en="A comprehensive and trusted platform for Ahl al-Sunnah wa al-Jama'ah">منصة شاملة وموثوقة لأهل السنة والجماعة</p>
+        <p data-lang-ar="الإصدار: 1.0.0" data-lang-en="Version: 1.0.0">الإصدار: 1.0.0</p>
+    </footer>
+
+    <script>
+        let currentLang = 'ar';
+
+        const contentData = {
+            ar: {
+                lang: 'ar',
+                dir: 'rtl',
+                buttonText: 'English'
+            },
+            en: {
+                lang: 'en',
+                dir: 'ltr',
+                buttonText: 'العربية'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const langData = contentData[currentLang];
+            
+            // Change document direction and language
+            document.documentElement.lang = langData.lang;
+            document.body.dir = langData.dir;
+            
+            // Update all elements with data-lang attributes
+            document.querySelectorAll('[data-lang-ar], [data-lang-en]').forEach(el => {
+                const attr = `data-lang-${currentLang}`;
+                if (el.hasAttribute(attr)) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.value = el.getAttribute(attr);
+                    } else {
+                        el.textContent = el.getAttribute(attr);
+                    }
+                }
+            });
+            
+            // Update language switch button
+            document.querySelector('.lang-switch').textContent = langData.buttonText;
+            
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const attr = `data-lang-${currentLang}`;
+                if (link.hasAttribute(attr)) {
+                    link.textContent = link.getAttribute(attr);
+                }
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
